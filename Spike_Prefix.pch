@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Spike' target in the 'Spike' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
