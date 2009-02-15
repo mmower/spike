@@ -15,10 +15,15 @@
             NSArray                   *requests;
   
   IBOutlet  NSArrayController         *requestsController;
+  IBOutlet  NSPanel                   *progressPanel;
+  IBOutlet  NSProgressIndicator       *progressIndicator;
 }
 
-@property (assign) NSArray            *requests;
-@property (assign) NSArrayController  *requestsController;
+@property (assign)    NSArray             *requests;
+@property (assign)    NSArrayController   *requestsController;
+
+@property (readonly)  NSPanel             *progressPanel;
+@property (readonly)  NSProgressIndicator *progressIndicator;
 
 - (IBAction)openDocument:(id)sender;
 

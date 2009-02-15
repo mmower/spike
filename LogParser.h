@@ -9,10 +9,14 @@
 #import <Cocoa/Cocoa.h>
 
 @class RailsRequest;
+@class AppController;
 
 @interface LogParser : NSObject {
+  AppController   *appController;
   NSDateFormatter *dateParser;
 }
+
+- (id)initWithAppController:(AppController *)theAppController;
 
 - (NSArray *)parseLogFile:(NSString *)logFileName;
 - (NSArray *)parseLogLines:(NSArray *)lines;

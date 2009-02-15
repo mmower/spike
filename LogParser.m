@@ -11,6 +11,7 @@
 #import "RailsRequest.h"
 #import "HashParser.h"
 #import "Parameter.h"
+#import "AppController.h"
 
 @interface LogParser ()
 - (void)scanProcessing:(NSString *)line intoRequest:(RailsRequest *)request;
@@ -19,12 +20,14 @@
 - (void)scanSession:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanCompleted:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanRender:(NSString *)line intoRequest:(RailsRequest *)request;
+- (void)scanFilter:(NSString *)line intoRequest:(RailsRequest *)request;
 @end
 
 @implementation LogParser
 
-- (id)init {
+- (id)initWithAppController:(AppController *)theAppController {
   if( ( self = [super init] ) ) {
+    appController = theAppController;
     dateParser = [[NSDateFormatter alloc] init];
     [dateParser setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
   }
@@ -33,6 +36,8 @@
 }
 
 - (NSArray *)parseLogFile:(NSString *)logFileName {
+  [[appController progressPanel] makeKeyAndOrderFront:self];
+  [[appController progressIndicator] setIndeterminate:YES];
   NSArray *logContent = [[NSString stringWithContentsOfFile:logFileName] componentsSeparatedByString:@"\n"];
   return [self parseLogLines:logContent];
 }
@@ -40,28 +45,39 @@
 - (NSArray *)parseLogLines:(NSArray *)lines {
   NSMutableArray *requests = [[NSMutableArray alloc] init];
   
+  double linesProcessed = 0.0;
+
+  [[appController progressIndicator] setMinValue:0];
+  [[appController progressIndicator] setMaxValue:[lines count]];
+  [[appController progressIndicator] setDoubleValue:linesProcessed];
+  [[appController progressIndicator] setIndeterminate:NO];
+  
   NSLog( @"%d lines to parse.", [lines count] );
+  
   
   NSMutableArray *lineGroup = [[NSMutableArray alloc] init];
   for( NSString *line in lines ) {
     line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    if( [line isEqualToString:@""] ) {
-      continue;
-    }
-    
-    if( [line hasPrefix:@"Processing"] ) {
-      if( [lineGroup count] > 0 ) {
-        [requests addObject:[self parseRequest:lineGroup]];
-        [lineGroup removeAllObjects];
-        // break;
+    if( ![line isEqualToString:@""] ) {
+      if( [line hasPrefix:@"Processing"] ) {
+        if( [lineGroup count] > 0 ) {
+          [requests addObject:[self parseRequest:lineGroup]];
+          [lineGroup removeAllObjects];
+          // break;
+        }
       }
+      
+      [lineGroup addObject:line];
     }
     
-    [lineGroup addObject:line];
+    linesProcessed += 1;
+    [[appController progressIndicator] setDoubleValue:linesProcessed];
   }
   
   NSLog( @"%d requests parsed.", [requests count] );
+  
+  [[appController progressPanel] orderOut:self];
   
   return requests;
 }
@@ -80,6 +96,8 @@
       [self scanCompleted:line intoRequest:request];
     } else if( [line hasPrefix:@"Rendering"] ) {
       [self scanRender:line intoRequest:request];
+    } else if( [line hasPrefix:@"Filter"] ) {
+      [self scanFilter:line intoRequest:request];
     }
   }
   
@@ -215,10 +233,11 @@
   
 }
 
+
 - (void)scanRender:(NSString *)line intoRequest:(RailsRequest *)request {
   NSString *render = [line substringFromIndex:10];
   
-  if( [render rangeOfString:@"(internal_server_error)"].location != NSNotFound ) {
+  if( [render rangeOfString:@"(internal_server_error)"].location != NSNotFound || [render rangeOfString:@"(not_found)"].location != NSNotFound ) {
     request.status = 500;
   } else if( [render rangeOfString:@".html"].location != NSNotFound ) {
     NSRange match = [render rangeOfString:@"public"];
@@ -227,5 +246,18 @@
     [[request renders] addObject:render];
   }
 }
+
+
+- (void)scanFilter:(NSString *)line intoRequest:(RailsRequest *)request {
+  NSScanner *scanner = [NSScanner scannerWithString:line];
+  
+  NSString *buffer;
+  [scanner scanString:@"Filter chain halted as [:" intoString:nil];
+  [scanner scanUpToString:@"]" intoString:&buffer];
+  
+  [request setHalted:YES];
+  [request setFilter:buffer];
+}
+
 
 @end

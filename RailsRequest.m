@@ -33,5 +33,7 @@
 @synthesize params;
 @synthesize renders;
 @synthesize sourceLog;
+@synthesize halted;
+@synthesize filter;
 
 @end

@@ -24,6 +24,8 @@
   NSArray             *params;
   NSMutableArray      *renders;
   NSAttributedString  *sourceLog;
+  BOOL                halted;
+  NSString            *filter;
 }
 
 @property           int                 status;
@@ -41,5 +43,7 @@
 @property (assign)  NSArray             *params;
 @property (assign)  NSMutableArray      *renders;
 @property (assign)  NSAttributedString  *sourceLog;
+@property           BOOL                halted;
+@property (assign)  NSString            *filter;
 
 @end

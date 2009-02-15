@@ -14,6 +14,7 @@
 		C9592FB60F483CF5004A49FA /* RequestDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9592FB40F483CF5004A49FA /* RequestDetails.xib */; };
 		C9592FBB0F483D45004A49FA /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9592FBA0F483D45004A49FA /* TDParseKit.framework */; };
 		C9592FBE0F483D4B004A49FA /* TDParseKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C9592FBA0F483D45004A49FA /* TDParseKit.framework */; };
+		C959306A0F4871B0004A49FA /* HaltedColumnTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C95930690F4871B0004A49FA /* HaltedColumnTransformer.m */; };
 		C9AAECF60F46D05D00D6C171 /* HashParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAECF50F46D05D00D6C171 /* HashParser.m */; };
 		C9AAED650F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED620F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m */; };
 		C9AAED660F46EF0900D6C171 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED640F46EF0900D6C171 /* NSString+TDParseKitAdditions.m */; };
@@ -51,6 +52,8 @@
 		8D1107320486CEB800E47090 /* Spike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9592FB50F483CF5004A49FA /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/RequestDetails.xib; sourceTree = "<group>"; };
 		C9592FBA0F483D45004A49FA /* TDParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TDParseKit.framework; path = frameworks/TDParseKit.framework; sourceTree = "<group>"; };
+		C95930680F4871B0004A49FA /* HaltedColumnTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaltedColumnTransformer.h; sourceTree = "<group>"; };
+		C95930690F4871B0004A49FA /* HaltedColumnTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaltedColumnTransformer.m; sourceTree = "<group>"; };
 		C9AAECF40F46D05D00D6C171 /* HashParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashParser.h; sourceTree = "<group>"; };
 		C9AAECF50F46D05D00D6C171 /* HashParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HashParser.m; sourceTree = "<group>"; };
 		C9AAED610F46EF0900D6C171 /* NSArray+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+TDParseKitAdditions.h"; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 				C9AAEDD60F4781C500D6C171 /* Parameter.m */,
 				C9AAEE1C0F479DFF00D6C171 /* RequestDetailsController.h */,
 				C9AAEE1D0F479DFF00D6C171 /* RequestDetailsController.m */,
+				C95930680F4871B0004A49FA /* HaltedColumnTransformer.h */,
+				C95930690F4871B0004A49FA /* HaltedColumnTransformer.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 				C9AAED660F46EF0900D6C171 /* NSString+TDParseKitAdditions.m in Sources */,
 				C9AAEDD70F4781C500D6C171 /* Parameter.m in Sources */,
 				C9AAEE1E0F479DFF00D6C171 /* RequestDetailsController.m in Sources */,
+				C959306A0F4871B0004A49FA /* HaltedColumnTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

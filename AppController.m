@@ -15,6 +15,8 @@
 
 @synthesize requests;
 @synthesize requestsController;
+@synthesize progressPanel;
+@synthesize progressIndicator;
 
 - (void)awakeFromNib {
   requestDetailsController = [[RequestDetailsController alloc] initWithAppController:self];
@@ -32,7 +34,7 @@
 
 
 - (void)parseLogFile:(NSString *)logFile {
-  LogParser *parser = [[LogParser alloc] init];
+  LogParser *parser = [[LogParser alloc] initWithAppController:self];
   [self setRequests:[parser parseLogFile:logFile]];
 }
 
