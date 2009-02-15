@@ -200,12 +200,19 @@
   [scanner scanInt:&n];
   [scanner scanString:@"%) | " intoString:nil];
   
-  
   if( ![scanner scanInt:&n] ) {
     NSLog( @"Bail scanning for status! [%@]", [line substringFromIndex:[scanner scanLocation]] );
     return;
   }
   [request setStatus:n];
+  
+  NSRange r1, r2;
+  r1 = [line rangeOfString:@"[" options:NSBackwardsSearch];
+  r2 = [line rangeOfString:@"]" options:NSBackwardsSearch];
+  if( r1.location != NSNotFound && r2.location != NSNotFound ) {
+    [request setUrl:[line substringWithRange:NSMakeRange( r1.location+1, r2.location - r1.location - 1)]];
+  }
+  
 }
 
 - (void)scanRender:(NSString *)line intoRequest:(RailsRequest *)request {
