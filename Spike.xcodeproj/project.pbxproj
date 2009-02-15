@@ -15,6 +15,8 @@
 		C9592FBB0F483D45004A49FA /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9592FBA0F483D45004A49FA /* TDParseKit.framework */; };
 		C9592FBE0F483D4B004A49FA /* TDParseKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C9592FBA0F483D45004A49FA /* TDParseKit.framework */; };
 		C959306A0F4871B0004A49FA /* HaltedColumnTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C95930690F4871B0004A49FA /* HaltedColumnTransformer.m */; };
+		C95930A70F48AE54004A49FA /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95930A60F48AE54004A49FA /* Sparkle.framework */; };
+		C95930AD0F48AEE3004A49FA /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C95930A60F48AE54004A49FA /* Sparkle.framework */; };
 		C9AAECF60F46D05D00D6C171 /* HashParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAECF50F46D05D00D6C171 /* HashParser.m */; };
 		C9AAED650F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED620F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m */; };
 		C9AAED660F46EF0900D6C171 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED640F46EF0900D6C171 /* NSString+TDParseKitAdditions.m */; };
@@ -32,6 +34,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C95930AD0F48AEE3004A49FA /* Sparkle.framework in Copy Frameworks */,
 				C9592FBE0F483D4B004A49FA /* TDParseKit.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
@@ -54,6 +57,7 @@
 		C9592FBA0F483D45004A49FA /* TDParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TDParseKit.framework; path = frameworks/TDParseKit.framework; sourceTree = "<group>"; };
 		C95930680F4871B0004A49FA /* HaltedColumnTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaltedColumnTransformer.h; sourceTree = "<group>"; };
 		C95930690F4871B0004A49FA /* HaltedColumnTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaltedColumnTransformer.m; sourceTree = "<group>"; };
+		C95930A60F48AE54004A49FA /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		C9AAECF40F46D05D00D6C171 /* HashParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashParser.h; sourceTree = "<group>"; };
 		C9AAECF50F46D05D00D6C171 /* HashParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HashParser.m; sourceTree = "<group>"; };
 		C9AAED610F46EF0900D6C171 /* NSArray+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+TDParseKitAdditions.h"; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				C9592FBB0F483D45004A49FA /* TDParseKit.framework in Frameworks */,
+				C95930A70F48AE54004A49FA /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +118,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C95930A60F48AE54004A49FA /* Sparkle.framework */,
 				C9592FBA0F483D45004A49FA /* TDParseKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
