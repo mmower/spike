@@ -17,6 +17,7 @@
 		C959306A0F4871B0004A49FA /* HaltedColumnTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C95930690F4871B0004A49FA /* HaltedColumnTransformer.m */; };
 		C95930A70F48AE54004A49FA /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95930A60F48AE54004A49FA /* Sparkle.framework */; };
 		C95930AD0F48AEE3004A49FA /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C95930A60F48AE54004A49FA /* Sparkle.framework */; };
+		C95930BB0F48B4AF004A49FA /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = C95930BA0F48B4AF004A49FA /* dsa_pub.pem */; };
 		C9AAECF60F46D05D00D6C171 /* HashParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAECF50F46D05D00D6C171 /* HashParser.m */; };
 		C9AAED650F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED620F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m */; };
 		C9AAED660F46EF0900D6C171 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED640F46EF0900D6C171 /* NSString+TDParseKitAdditions.m */; };
@@ -58,6 +59,7 @@
 		C95930680F4871B0004A49FA /* HaltedColumnTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaltedColumnTransformer.h; sourceTree = "<group>"; };
 		C95930690F4871B0004A49FA /* HaltedColumnTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaltedColumnTransformer.m; sourceTree = "<group>"; };
 		C95930A60F48AE54004A49FA /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = "<group>"; };
+		C95930BA0F48B4AF004A49FA /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		C9AAECF40F46D05D00D6C171 /* HashParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashParser.h; sourceTree = "<group>"; };
 		C9AAECF50F46D05D00D6C171 /* HashParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HashParser.m; sourceTree = "<group>"; };
 		C9AAED610F46EF0900D6C171 /* NSArray+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+TDParseKitAdditions.h"; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C95930BA0F48B4AF004A49FA /* dsa_pub.pem */,
 				C9592FB40F483CF5004A49FA /* RequestDetails.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -231,6 +234,7 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				C9592FB60F483CF5004A49FA /* RequestDetails.xib in Resources */,
+				C95930BB0F48B4AF004A49FA /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +300,7 @@
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = required;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -316,6 +321,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/frameworks\"",
 				);
+				GCC_ENABLE_OBJC_GC = required;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Spike_Prefix.pch;

@@ -5,9 +5,9 @@ require "choctop"
 
 ChocTop.new do |s|
   # Remote upload target
-  s.host     = 'lucidmac.com'
-  s.base_url   = "http://#{s.host}"
-  s.remote_dir = '/var/apps/lucidmac/public/pkg'
+  s.host     = 'lucidmac'
+  s.base_url   = "http://#{s.host}/pkg/spike"
+  s.remote_dir = '/var/apps/lucidmac/public/pkg/spike'
 
   # Custom DMG
   # s.background_file = "background.jpg"

@@ -2,4 +2,5 @@ build
 Spike.xcodeproj/*.pbxuser
 Spike.xcodeproj/*.mode2v3
 dsa_priv.pem
+.DS_Store
 
