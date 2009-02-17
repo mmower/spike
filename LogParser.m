@@ -8,6 +8,8 @@
 
 #import "LogParser.h"
 
+#import <TDParseKit/TDParseKit.h>
+
 #import "RailsRequest.h"
 #import "ParamParser.h"
 #import "Parameter.h"
@@ -140,7 +142,13 @@
 
 
 - (void)scanParameters:(NSString *)line intoRequest:(RailsRequest *)request {
-  [request setParams:[paramParser parseParams:[line substringFromIndex:12]]];
+  @try {
+    [request setParams:[paramParser parseParams:[line substringFromIndex:12]]];
+  }
+  @catch( TDTrackException *trackException ) {
+    NSLog( @"Parameter parser could not finish: %@", [trackException reason] );
+    NSLog( @"\t%@", line );
+  }
 }
 
 

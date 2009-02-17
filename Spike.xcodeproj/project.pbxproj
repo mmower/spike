@@ -14,6 +14,7 @@
 		C921DB8A0F4AE1D8008A2505 /* ParamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C921DB890F4AE1D8008A2505 /* ParamParser.m */; };
 		C921DBC70F4B03CF008A2505 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C921DBC60F4B03CF008A2505 /* BWToolkitFramework.framework */; };
 		C921DBCB0F4B03E7008A2505 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C921DBC60F4B03CF008A2505 /* BWToolkitFramework.framework */; };
+		C921DC250F4B4D98008A2505 /* spike.icns in Resources */ = {isa = PBXBuildFile; fileRef = C921DC240F4B4D98008A2505 /* spike.icns */; };
 		C9592FB60F483CF5004A49FA /* RequestDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9592FB40F483CF5004A49FA /* RequestDetails.xib */; };
 		C9592FBB0F483D45004A49FA /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9592FBA0F483D45004A49FA /* TDParseKit.framework */; };
 		C9592FBE0F483D4B004A49FA /* TDParseKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C9592FBA0F483D45004A49FA /* TDParseKit.framework */; };
@@ -61,6 +62,7 @@
 		C921DB880F4AE1D8008A2505 /* ParamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParamParser.h; sourceTree = "<group>"; };
 		C921DB890F4AE1D8008A2505 /* ParamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParamParser.m; sourceTree = "<group>"; };
 		C921DBC60F4B03CF008A2505 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = frameworks/BWToolkitFramework.framework; sourceTree = "<group>"; };
+		C921DC240F4B4D98008A2505 /* spike.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = spike.icns; sourceTree = "<group>"; };
 		C9592FB50F483CF5004A49FA /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/RequestDetails.xib; sourceTree = "<group>"; };
 		C9592FBA0F483D45004A49FA /* TDParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TDParseKit.framework; path = frameworks/TDParseKit.framework; sourceTree = "<group>"; };
 		C95930680F4871B0004A49FA /* HaltedColumnTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaltedColumnTransformer.h; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C921DC240F4B4D98008A2505 /* spike.icns */,
 				C95930BA0F48B4AF004A49FA /* dsa_pub.pem */,
 				C9592FB40F483CF5004A49FA /* RequestDetails.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -246,6 +249,7 @@
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				C9592FB60F483CF5004A49FA /* RequestDetails.xib in Resources */,
 				C95930BB0F48B4AF004A49FA /* dsa_pub.pem in Resources */,
+				C921DC250F4B4D98008A2505 /* spike.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
