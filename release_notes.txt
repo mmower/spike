@@ -1,0 +1,9 @@
+h1. <span>2009-02-16</span> Release 1.0.2
+
+Display visible requests
+Delete requests with the backspace key
+Fixed the billion memory leaks issue (didn't turn on GC for release builds!) (actually in 1.0.1)
+
+h1. <span>2009-02-15</span> Release 1.0
+
+Yay! First release.

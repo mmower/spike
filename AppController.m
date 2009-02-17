@@ -9,6 +9,7 @@
 #import "AppController.h"
 
 #import "LogParser.h"
+#import "RailsRequest.h"
 #import "RequestDetailsController.h"
 
 @implementation AppController
@@ -23,6 +24,7 @@
   [requestDetailsController showWindow:self];
 }
 
+
 - (IBAction)openDocument:(id)sender {
   NSOpenPanel* openDlg = [NSOpenPanel openPanel];
   [openDlg setCanChooseFiles:YES];
@@ -33,9 +35,21 @@
 }
 
 
+- (IBAction)removeSimilarRequests:(id)sender {
+  // Get controller & action of selected request
+  RailsRequest *request = [[requestsController selectedObjects] objectAtIndex:0];
+  if( request ) {
+    NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"!( controller == %@ AND action == %@ )",[request controller],[request action]];
+    NSLog( @"Deleting using predicate: %@", filterPredicate );
+    [self setRequests:[requests filteredArrayUsingPredicate:filterPredicate]];
+  }
+}
+
+
 - (void)parseLogFile:(NSString *)logFile {
   LogParser *parser = [[LogParser alloc] initWithAppController:self];
   [self setRequests:[parser parseLogFile:logFile]];
 }
+
 
 @end

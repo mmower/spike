@@ -26,5 +26,6 @@
 @property (readonly)  NSProgressIndicator *progressIndicator;
 
 - (IBAction)openDocument:(id)sender;
+- (IBAction)removeSimilarRequests:(id)sender;
 
 @end
