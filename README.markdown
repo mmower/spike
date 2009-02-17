@@ -34,3 +34,7 @@ View a short [demo movie](http://www.screencast.com/users/sandbags/folders/Jing/
 * [Brandon Walkin](http://www.brandonwalkin.com/) for [BWToolkit](http://www.brandonwalkin.com/blog/2008/11/13/introducing-bwtoolkit/)
 * [Andy Matuschak](http://andymatuschak.org/) for [Sparkle](http://sparkle.andymatuschak.org/)
 * [Samo Korosec](http://froodee.at) for the Spike icon
+
+## About the author
+
+[I](http://mattmower.com/) write Rails applications [for a living](http://reeplay.it/) and Cocoa applications as a hobby under the name [LucidMac Software](http://lucidmac.com/) 
