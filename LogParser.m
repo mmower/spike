@@ -30,6 +30,8 @@
     appController = theAppController;
     dateParser = [[NSDateFormatter alloc] init];
     [dateParser setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    hashParser = [[HashParser alloc] init];
   }
   
   return self;
@@ -138,7 +140,7 @@
 }
 
 - (void)scanParameters:(NSString *)line intoRequest:(RailsRequest *)request {
-  [request setParams:[self convertToParamsTable:[[[HashParser alloc] init] parseHash:[line substringFromIndex:12]]]];
+  [request setParams:[self convertToParamsTable:[hashParser parseHash:[line substringFromIndex:12]]]];
 }
 
 - (NSArray *)convertToParamsTable:(NSDictionary *)dictionary {
