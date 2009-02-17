@@ -11,7 +11,7 @@ The aim of Spike is to make it easy to see all of your requests, narrow them dow
 * Optimized interface (read: not many features!)
 * Filter requests by controller, action, session, client, or Rails filter action (e.g. login_required)
 * Display summary of request details with drill-down to parameters, rendered templates, and raw log info
-* Remove specific controller:action combos (e.g. SessionController#heartbeat)
+* Remove specific controller:action combos (e.g. SessionController#heartbeat) using backspace
 * And that's about it...
 
 ## Notes
@@ -30,7 +30,7 @@ View a short [demo movie](http://www.screencast.com/users/sandbags/folders/Jing/
 
 ## Acknowledgements
 
-Todd Ditchendorf for TDParseKit
-Brandon Walkin for BWToolkit
-Andy Matuschak for Sparkle
-Samo Korosec for the Spike icon
+* [Todd Ditchendorf](http://ditchnet.org/) for [TDParseKit](http://ditchnet.org/tdparsekit/)
+* [Brandon Walkin](http://www.brandonwalkin.com/) for [BWToolkit](http://www.brandonwalkin.com/blog/2008/11/13/introducing-bwtoolkit/)
+* [Andy Matuschak](http://andymatuschak.org/) for [Sparkle](http://sparkle.andymatuschak.org/)
+* [Samo Korosec](http://froodee.at) for the Spike icon
