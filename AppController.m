@@ -12,6 +12,13 @@
 #import "RailsRequest.h"
 #import "RequestDetailsController.h"
 
+static NSString *SearchToolbarItemIdentifier = @"spike.searchField";
+
+
+@interface AppController (PrivateAppController)
+@end
+
+
 @implementation AppController
 
 @synthesize requests;
@@ -23,6 +30,39 @@
   requestDetailsController = [[RequestDetailsController alloc] initWithAppController:self];
   [requestDetailsController showWindow:self];
 }
+
+
+#pragma mark NSToolbar delegate implementations
+
+
+- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)aToolbar {
+  NSLog( @"toolbarAllowedItemIdentifiers:%@", aToolbar );
+  return [NSArray arrayWithObjects:NSToolbarFlexibleSpaceItemIdentifier,SearchToolbarItemIdentifier,nil];
+}
+
+
+- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)aToolbar {
+  NSLog( @"toolbarDefaultItemIdentifiers:%@", aToolbar );
+  return [NSArray arrayWithObjects:NSToolbarFlexibleSpaceItemIdentifier,SearchToolbarItemIdentifier,nil];
+}
+
+
+- (NSToolbarItem *)toolbar:(NSToolbar *)aToolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
+  NSLog( @"toolbar:%@ itemForItemIdentifier:%@ willBeInsertedIntoToolbar:%@", aToolbar, itemIdentifier, flag ? @"YES" : @"NO" );
+  NSToolbarItem *toolbarItem = nil;
+  
+  if( [itemIdentifier isEqualTo:SearchToolbarItemIdentifier] ) {
+    toolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
+    [toolbarItem setView:searchField];
+    [toolbarItem setMinSize:[searchField frame].size];
+    [toolbarItem setMaxSize:[searchField frame].size];
+  }
+  
+  return toolbarItem;
+}
+
+
+#pragma mark Actions
 
 
 - (IBAction)openDocument:(id)sender {

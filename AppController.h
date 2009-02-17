@@ -17,6 +17,8 @@
   IBOutlet  NSArrayController         *requestsController;
   IBOutlet  NSPanel                   *progressPanel;
   IBOutlet  NSProgressIndicator       *progressIndicator;
+  IBOutlet  NSToolbar                 *toolbar;
+  IBOutlet  NSSearchField             *searchField;
 }
 
 @property (assign)    NSArray             *requests;
