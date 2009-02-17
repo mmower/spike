@@ -9,14 +9,13 @@
 #import "LogParser.h"
 
 #import "RailsRequest.h"
-#import "HashParser.h"
+#import "ParamParser.h"
 #import "Parameter.h"
 #import "AppController.h"
 
 @interface LogParser ()
 - (void)scanProcessing:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanParameters:(NSString *)line intoRequest:(RailsRequest *)request;
-- (NSArray *)convertToParamsTable:(NSDictionary *)hash;
 - (void)scanSession:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanCompleted:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanRender:(NSString *)line intoRequest:(RailsRequest *)request;
@@ -25,17 +24,19 @@
 
 @implementation LogParser
 
+
 - (id)initWithAppController:(AppController *)theAppController {
   if( ( self = [super init] ) ) {
     appController = theAppController;
     dateParser = [[NSDateFormatter alloc] init];
     [dateParser setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
-    hashParser = [[HashParser alloc] init];
+    paramParser = [[ParamParser alloc] init];
   }
   
   return self;
 }
+
 
 - (NSArray *)parseLogFile:(NSString *)logFileName {
   [[appController progressPanel] makeKeyAndOrderFront:self];
@@ -43,6 +44,7 @@
   NSArray *logContent = [[NSString stringWithContentsOfFile:logFileName] componentsSeparatedByString:@"\n"];
   return [self parseLogLines:logContent];
 }
+
 
 - (NSArray *)parseLogLines:(NSArray *)lines {
   NSMutableArray *requests = [[NSMutableArray alloc] init];
@@ -84,6 +86,7 @@
   return requests;
 }
 
+
 - (RailsRequest *)parseRequest:(NSArray *)lines {
   RailsRequest *request = [[RailsRequest alloc] init];
   
@@ -108,6 +111,7 @@
   return request;
 }
 
+
 - (void)scanProcessing:(NSString *)line intoRequest:(RailsRequest *)request {
   NSScanner *scanner = [NSScanner scannerWithString:line];
   
@@ -115,52 +119,30 @@
   
   [scanner scanString:@"Processing " intoString:nil];
   [scanner scanUpToString:@"#" intoString:&buffer];
-  // NSLog( @"BUFFER = [%@]", buffer );
   [request setController:buffer];
   
   [scanner scanString:@"#" intoString:nil];
   [scanner scanUpToString:@" " intoString:&buffer];
-  // NSLog( @"BUFFER = [%@]", buffer );
   [request setAction:buffer];
   
   [scanner scanString:@"(for " intoString:nil];
   [scanner scanUpToString:@" " intoString:&buffer];
-  // NSLog( @"BUFFER = [%@]", buffer );
   [request setClient:[NSHost hostWithAddress:buffer]];
   
   [scanner scanString:@"at " intoString:nil];
   [scanner scanUpToString:@")" intoString:&buffer];
-  // NSLog( @"BUFFER = [%@]", buffer );
   [request setWhen:[dateParser dateFromString:buffer]];
   
   [scanner scanString:@") [" intoString:nil];
   [scanner scanUpToString:@"]" intoString:&buffer];
-  // NSLog( @"BUFFER = [%@]", buffer );
   [request setMethod:buffer];
 }
 
+
 - (void)scanParameters:(NSString *)line intoRequest:(RailsRequest *)request {
-  [request setParams:[self convertToParamsTable:[hashParser parseHash:[line substringFromIndex:12]]]];
+  [request setParams:[paramParser parseParams:[line substringFromIndex:12]]];
 }
 
-- (NSArray *)convertToParamsTable:(NSDictionary *)dictionary {
-  NSMutableArray *params = [NSMutableArray arrayWithCapacity:[dictionary count]];
-  
-  for( NSString *name in [dictionary allKeys] ) {
-    Parameter *param = [[Parameter alloc] initWithName:name];
-    
-    id value = [dictionary objectForKey:name];
-    if( [value isKindOfClass:[NSString class]] ) {
-      [param setValue:value];
-    } else if( [value isKindOfClass:[NSDictionary class]] ) {
-      [param setGroupedParams:[self convertToParamsTable:value]];
-    }
-    
-    [params addObject:param];
-  }
-  
-  return params;
-}
 
 - (void)scanSession:(NSString *)line intoRequest:(RailsRequest *)request {
   NSScanner *scanner = [NSScanner scannerWithString:line];
@@ -171,6 +153,7 @@
   [scanner scanCharactersFromSet:[NSCharacterSet alphanumericCharacterSet] intoString:&buffer];
   [request setSession:buffer];
 }
+
 
 - (void)scanCompleted:(NSString *)line intoRequest:(RailsRequest *)request {
   NSScanner *scanner = [NSScanner scannerWithString:line];

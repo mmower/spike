@@ -10,12 +10,12 @@
 
 @class RailsRequest;
 @class AppController;
-@class HashParser;
+@class ParamParser;
 
 @interface LogParser : NSObject {
   AppController   *appController;
   NSDateFormatter *dateParser;
-  HashParser      *hashParser;
+  ParamParser     *paramParser;
 }
 
 - (id)initWithAppController:(AppController *)theAppController;

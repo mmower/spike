@@ -11,6 +11,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		C921DB8A0F4AE1D8008A2505 /* ParamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C921DB890F4AE1D8008A2505 /* ParamParser.m */; };
 		C9592FB60F483CF5004A49FA /* RequestDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9592FB40F483CF5004A49FA /* RequestDetails.xib */; };
 		C9592FBB0F483D45004A49FA /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9592FBA0F483D45004A49FA /* TDParseKit.framework */; };
 		C9592FBE0F483D4B004A49FA /* TDParseKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C9592FBA0F483D45004A49FA /* TDParseKit.framework */; };
@@ -54,6 +55,8 @@
 		32CA4F630368D1EE00C91783 /* Spike_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spike_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Spike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spike.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C921DB880F4AE1D8008A2505 /* ParamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParamParser.h; sourceTree = "<group>"; };
+		C921DB890F4AE1D8008A2505 /* ParamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParamParser.m; sourceTree = "<group>"; };
 		C9592FB50F483CF5004A49FA /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/RequestDetails.xib; sourceTree = "<group>"; };
 		C9592FBA0F483D45004A49FA /* TDParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TDParseKit.framework; path = frameworks/TDParseKit.framework; sourceTree = "<group>"; };
 		C95930680F4871B0004A49FA /* HaltedColumnTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaltedColumnTransformer.h; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 				C9AAEE1D0F479DFF00D6C171 /* RequestDetailsController.m */,
 				C95930680F4871B0004A49FA /* HaltedColumnTransformer.h */,
 				C95930690F4871B0004A49FA /* HaltedColumnTransformer.m */,
+				C921DB880F4AE1D8008A2505 /* ParamParser.h */,
+				C921DB890F4AE1D8008A2505 /* ParamParser.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 				C9AAEDD70F4781C500D6C171 /* Parameter.m in Sources */,
 				C9AAEE1E0F479DFF00D6C171 /* RequestDetailsController.m in Sources */,
 				C959306A0F4871B0004A49FA /* HaltedColumnTransformer.m in Sources */,
+				C921DB8A0F4AE1D8008A2505 /* ParamParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
