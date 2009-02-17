@@ -1,16 +1,36 @@
-# Spike
+## Introduction
 
-A Cocoa Rails log tool
-Written by Matt Mower <self@mattmower.com>
+Spike is a log file viewing & analysis (if we're being generous) tool for Rails developers.
 
-# Introduction
+When developing a Rails application it is not unusual to end up pouring over log files to understand why particular actions are, or are not, happening. Rails typically logs quite a lot of information and, in a production environment, there can be a lot of requests to wade through.
 
-Spike is a simple app intended to make looking for information or patterns in Rails log files a little easier. I got fed up of scrolling backwards and forwards through endless logs looking for particular requests one too many times. Spike is the result.
+The aim of Spike is to make it easy to see all of your requests, narrow them down to only the most relevant, and examine the details of those requests. To do it quickly, and with a pleasant interface.
 
-Open your logfile and Spike will parse all of the requests and display them in a table including the main features like controller, action, client ip, status, and so on. Select a request to show detailed information including parameters, what was used to render the request, any filters that stopped rendering, and so on.
+## Features
 
-See a quick demo [here](http://screencast.com/t/zx0mtdIfbb).
+* Optimized interface (read: not many features!)
+* Filter requests by controller, action, session, client, or Rails filter action (e.g. login_required)
+* Display summary of request details with drill-down to parameters, rendered templates, and raw log info
+* Remove specific controller:action combos (e.g. SessionController#heartbeat)
+* And that's about it...
 
-# Acknowledgements
+## Notes
 
-Spike uses [TDParseKit](http://code.google.com/p/todparsekit/) by Todd Ditchendorf. 
+Spike has only been tested on a handful of log files at this point. If Spike doesn't work properly on your log file please get in touch.
+
+## Download
+
+<a href="http://lucidmac.com/pkg/spike/Spike-1.0.4.dmg">Spike 1.0.4</a>
+
+Spike is a universal binary for Mac OS X 10.5
+
+## Demo
+
+View a short [demo movie](http://www.screencast.com/users/sandbags/folders/Jing/media/cdde1cdd-a4b6-4246-a562-088daecb543c)
+
+## Acknowledgements
+
+Todd Ditchendorf for TDParseKit
+Brandon Walkin for BWToolkit
+Andy Matuschak for Sparkle
+Samo Korosec for the Spike icon
