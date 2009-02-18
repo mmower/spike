@@ -1,7 +1,13 @@
-h1. <span>2009-02-17</span> Release 1.0.3
+h1. <span>2009-02-18</span> Release 1.0.5
+
+Spike is now document based, open multipe log files
+Spike supports Rails 2.2 style logfiles
+
+h1. <span>2009-02-17</span> Release 1.0.4
 
 Improved main UI
-Small improvements to parser
+Small improvements to parser, trap some errors
+Shiny new icon!
 
 h1. <span>2009-02-16</span> Release 1.0.2
 

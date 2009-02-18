@@ -16,6 +16,8 @@
 #import "Parameter.h"
 #import "ParsingProgressController.h"
 
+#import "NSScanner+SpikeAdditions.h"
+
 @interface LogParser (PrivateMethods)
 - (RailsRequest *)parseRequest:(NSArray *)lines;
 - (NSArray *)parseLogLines:(NSArray *)lines;
@@ -23,6 +25,8 @@
 - (void)scanParameters:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanSession:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanCompleted:(NSString *)line intoRequest:(RailsRequest *)request;
+- (void)scanCompletedOldFormat:(NSString *)line scanner:(NSScanner *)scanner intoRequest:(RailsRequest *)request;
+- (void)scanCompletedNewFormat:(NSString *)line scanner:(NSScanner *)scanner intoRequest:(RailsRequest *)request;
 - (void)scanRender:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanFilter:(NSString *)line intoRequest:(RailsRequest *)request;
 @end
@@ -174,7 +178,6 @@
 - (void)scanCompleted:(NSString *)line intoRequest:(RailsRequest *)request {
   NSScanner *scanner = [NSScanner scannerWithString:line];
   float t;
-  int n;
   
   [scanner scanString:@"Completed in " intoString:nil];
   if( ![scanner scanFloat:&t] ) {
@@ -182,6 +185,18 @@
     return;
   }
   [request setRealTime:t];
+  
+  if( [scanner scanString:@"ms" intoString:nil] ) {
+    [self scanCompletedNewFormat:line scanner:scanner intoRequest:request];
+  } else {
+    [self scanCompletedOldFormat:line scanner:scanner intoRequest:request];
+  }
+}
+
+
+- (void)scanCompletedOldFormat:(NSString *)line scanner:(NSScanner *)scanner intoRequest:(RailsRequest *)request {
+  float     t;
+  int       n;
   
   [scanner scanCharactersFromSet:[NSCharacterSet whitespaceCharacterSet] intoString:nil];
   [scanner scanString:@"(" intoString:nil];
@@ -232,6 +247,55 @@
     [request setUrl:[line substringWithRange:NSMakeRange( r1.location+1, r2.location - r1.location - 1)]];
   }
   
+}
+
+
+- (void)scanCompletedNewFormat:(NSString *)line scanner:(NSScanner *)scanner intoRequest:(RailsRequest *)request {
+  float     t;
+  int       n;
+  
+  
+  [scanner eatWS];
+  [scanner eat:@"("];
+  
+  // "View: 8, "
+  if( [scanner detect:@"View:"] ) {
+    [scanner eatWS];
+    [scanner scanFloat:&t];
+    [request setRenderTime:t];
+    
+    [scanner eat:@","];
+    [scanner eatWS];
+  }
+  
+  if( [scanner detect:@"DB:"] ) {
+    [scanner eatWS];
+    [scanner scanFloat:&t];
+    [request setDbTime:t];
+  }
+  
+  // New format is given in millis, convert to (s)
+  [request setRealTime:[request realTime]/1000];
+  [request setRenderTime:[request renderTime]/1000];
+  [request setDbTime:[request dbTime]/1000];
+  // Calculate RPS not given in 2.2 format
+  [request setRps:( 1.0 / [request realTime] )];
+  
+  [scanner eat:@")"];
+  [scanner eatWS];
+  
+  if( [scanner detect:@"|"] ) {
+    [scanner eatWS];
+    [scanner scanInt:&n];
+    [request setStatus:n];
+  }
+  
+  NSRange r1, r2;
+  r1 = [line rangeOfString:@"[" options:NSBackwardsSearch];
+  r2 = [line rangeOfString:@"]" options:NSBackwardsSearch];
+  if( r1.location != NSNotFound && r2.location != NSNotFound ) {
+    [request setUrl:[line substringWithRange:NSMakeRange( r1.location+1, r2.location - r1.location - 1)]];
+  }
 }
 
 

@@ -19,6 +19,7 @@
 		C92614390F4C32AE00218378 /* ParsingProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92614380F4C32AE00218378 /* ParsingProgressController.m */; };
 		C92614830F4C45D800218378 /* LogDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = C926147F0F4C45D800218378 /* LogDocument.xib */; };
 		C92614840F4C45D800218378 /* ParsingProgress.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92614810F4C45D800218378 /* ParsingProgress.xib */; };
+		C92614C10F4C591900218378 /* NSScanner+SpikeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C92614C00F4C591900218378 /* NSScanner+SpikeAdditions.m */; };
 		C9592FB60F483CF5004A49FA /* RequestDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9592FB40F483CF5004A49FA /* RequestDetails.xib */; };
 		C9592FBB0F483D45004A49FA /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9592FBA0F483D45004A49FA /* TDParseKit.framework */; };
 		C9592FBE0F483D4B004A49FA /* TDParseKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C9592FBA0F483D45004A49FA /* TDParseKit.framework */; };
@@ -73,6 +74,8 @@
 		C92614380F4C32AE00218378 /* ParsingProgressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsingProgressController.m; sourceTree = "<group>"; };
 		C92614800F4C45D800218378 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LogDocument.xib; sourceTree = "<group>"; };
 		C92614820F4C45D800218378 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ParsingProgress.xib; sourceTree = "<group>"; };
+		C92614BF0F4C591900218378 /* NSScanner+SpikeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+SpikeAdditions.h"; sourceTree = "<group>"; };
+		C92614C00F4C591900218378 /* NSScanner+SpikeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+SpikeAdditions.m"; sourceTree = "<group>"; };
 		C9592FB50F483CF5004A49FA /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/RequestDetails.xib; sourceTree = "<group>"; };
 		C9592FBA0F483D45004A49FA /* TDParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TDParseKit.framework; path = frameworks/TDParseKit.framework; sourceTree = "<group>"; };
 		C95930680F4871B0004A49FA /* HaltedColumnTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaltedColumnTransformer.h; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				C92613A80F4C24FF00218378 /* LogDocument.m */,
 				C92614370F4C32AE00218378 /* ParsingProgressController.h */,
 				C92614380F4C32AE00218378 /* ParsingProgressController.m */,
+				C92614BF0F4C591900218378 /* NSScanner+SpikeAdditions.h */,
+				C92614C00F4C591900218378 /* NSScanner+SpikeAdditions.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 				C921DB8A0F4AE1D8008A2505 /* ParamParser.m in Sources */,
 				C92613A90F4C24FF00218378 /* LogDocument.m in Sources */,
 				C92614390F4C32AE00218378 /* ParsingProgressController.m in Sources */,
+				C92614C10F4C591900218378 /* NSScanner+SpikeAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
