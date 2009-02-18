@@ -10,12 +10,15 @@
 
 #import <TDParseKit/TDParseKit.h>
 
+#import "LogDocument.h"
 #import "RailsRequest.h"
 #import "ParamParser.h"
 #import "Parameter.h"
-#import "AppController.h"
+#import "ParsingProgressController.h"
 
-@interface LogParser ()
+@interface LogParser (PrivateMethods)
+- (RailsRequest *)parseRequest:(NSArray *)lines;
+- (NSArray *)parseLogLines:(NSArray *)lines;
 - (void)scanProcessing:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanParameters:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanSession:(NSString *)line intoRequest:(RailsRequest *)request;
@@ -27,9 +30,9 @@
 @implementation LogParser
 
 
-- (id)initWithAppController:(AppController *)theAppController {
+- (id)initWithDocument:(LogDocument *)theDocument {
   if( ( self = [super init] ) ) {
-    appController = theAppController;
+    document = theDocument;
     dateParser = [[NSDateFormatter alloc] init];
     [dateParser setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
@@ -40,25 +43,29 @@
 }
 
 
-- (NSArray *)parseLogFile:(NSString *)logFileName {
-  [[appController progressPanel] makeKeyAndOrderFront:self];
-  [[appController progressIndicator] setIndeterminate:YES];
-  NSArray *logContent = [[NSString stringWithContentsOfFile:logFileName] componentsSeparatedByString:@"\n"];
-  return [self parseLogLines:logContent];
+- (NSArray *)parseLogData:(NSData *)data {
+  progressController = [[ParsingProgressController alloc] init];
+  [progressController showWindow:self];
+  
+  NSString *content = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+  
+  NSArray *lines = [content componentsSeparatedByString:@"\n"];
+  NSLog( @"%d lines to parse.", [lines count] );
+  [progressController setMin:0 max:[lines count]];
+  
+  NSArray *requests = [self parseLogLines:lines];
+  NSLog( @"%d requests parsed.", [requests count] );
+  [progressController close];
+  
+  return requests;
 }
 
 
 - (NSArray *)parseLogLines:(NSArray *)lines {
   NSMutableArray *requests = [[NSMutableArray alloc] init];
   
-  double linesProcessed = 0.0;
-
-  [[appController progressIndicator] setMinValue:0];
-  [[appController progressIndicator] setMaxValue:[lines count]];
-  [[appController progressIndicator] setDoubleValue:linesProcessed];
-  [[appController progressIndicator] setIndeterminate:NO];
-  
-  NSLog( @"%d lines to parse.", [lines count] );
+  double  linesProcessed = 0.0;
+  BOOL    hitFirstValidEntry = NO;
   
   
   NSMutableArray *lineGroup = [[NSMutableArray alloc] init];
@@ -72,18 +79,19 @@
           [lineGroup removeAllObjects];
           // break;
         }
+        
+        hitFirstValidEntry = YES;
       }
       
-      [lineGroup addObject:line];
+      if( hitFirstValidEntry ) {
+        [lineGroup addObject:line];
+      }
     }
     
     linesProcessed += 1;
-    [[appController progressIndicator] setDoubleValue:linesProcessed];
+    [progressController update:linesProcessed];
   }
   
-  NSLog( @"%d requests parsed.", [requests count] );
-  
-  [[appController progressPanel] orderOut:self];
   
   return requests;
 }

@@ -9,19 +9,20 @@
 #import <Cocoa/Cocoa.h>
 
 @class RailsRequest;
-@class AppController;
+@class LogDocument;
 @class ParamParser;
+@class ParsingProgressController;
 
 @interface LogParser : NSObject {
-  AppController   *appController;
-  NSDateFormatter *dateParser;
-  ParamParser     *paramParser;
+  LogDocument                 *document;
+  NSDateFormatter             *dateParser;
+  ParamParser                 *paramParser;
+  
+  ParsingProgressController   *progressController;
 }
 
-- (id)initWithAppController:(AppController *)theAppController;
+- (id)initWithDocument:(LogDocument *)theDocument;
 
-- (NSArray *)parseLogFile:(NSString *)logFileName;
-- (NSArray *)parseLogLines:(NSArray *)lines;
-- (RailsRequest *)parseRequest:(NSArray *)lines;
+- (NSArray *)parseLogData:(NSData *)data;
 
 @end
