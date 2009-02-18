@@ -8,17 +8,5 @@
 
 #import "RequestDetailsController.h"
 
-#import "AppController.h"
-
 @implementation RequestDetailsController
-
-- (id)initWithAppController:(AppController *)theAppController {
-  if( ( self = [super initWithWindowNibName:@"RequestDetails"] ) ) {
-    appController = theAppController;
-  }
-  return self;
-}
-
-@synthesize appController;
-
 @end

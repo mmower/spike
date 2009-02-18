@@ -9,11 +9,11 @@
 #import <Cocoa/Cocoa.h>
 
 @class AppController;
-@class RequestDetailsController;
+// @class RequestDetailsController;
 
 @interface LogDocument : NSDocument {
             NSArray                   *requests;
-            RequestDetailsController  *requestDetailsController;
+            // RequestDetailsController  *requestDetailsController;
             
   IBOutlet  NSArrayController         *requestsController;
   IBOutlet  NSToolbar                 *toolbar;
@@ -21,6 +21,7 @@
 }
 
 @property (assign)    NSArray             *requests;
+@property (assign)    NSArrayController   *requestsController;
 
 - (IBAction)removeSimilarRequests:(id)sender;
 

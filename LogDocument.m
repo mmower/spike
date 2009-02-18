@@ -11,7 +11,7 @@
 #import "AppController.h"
 #import "LogParser.h"
 #import "RailsRequest.h"
-#import "RequestDetailsController.h"
+// #import "RequestDetailsController.h"
 
 static NSString *SearchToolbarItemIdentifier = @"spike.searchField";
 
@@ -22,15 +22,16 @@ static NSString *SearchToolbarItemIdentifier = @"spike.searchField";
 @implementation LogDocument
 
 - (void)makeWindowControllers {
-  [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"LogDocument" owner:self]];
-  [self addWindowController:[[RequestDetailsController alloc] initWithDocument:self]];
-  
-  // requestDetailsController = ;
-  // [requestDetailsController showWindow:self];
+  NSWindowController *documentController = [[NSWindowController alloc] initWithWindowNibName:@"LogDocument" owner:self];
+  [self addWindowController:documentController];
+  NSWindowController *detailsController = [[NSWindowController alloc] initWithWindowNibName:@"RequestDetails" owner:self];
+  [self addWindowController:detailsController];
+  // [detailsController showWindow:self];
 }
 
 
 @synthesize requests;
+@synthesize requestsController;
 
 
 #pragma mark NSToolbar delegate implementations

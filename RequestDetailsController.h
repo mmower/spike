@@ -8,14 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class AppController;
-
 @interface RequestDetailsController : NSWindowController {
-  AppController *appController;
 }
-
-@property (readonly)  AppController *appController;
-
-- (id)initWithAppController:(AppController *)theAppController;
 
 @end
