@@ -23,6 +23,6 @@
 
 - (id)initWithDocument:(LogDocument *)theDocument;
 
-- (NSArray *)parseLogData:(NSData *)data;
+- (NSArray *)parseLogData:(NSData *)data isCompressed:(BOOL)isCompressed;
 
 @end

@@ -10,6 +10,7 @@
 
 @implementation ParsingProgressController
 
+@synthesize statusField;
 @synthesize panel;
 @synthesize indicator;
 
@@ -30,6 +31,19 @@
 
 - (void)update:(double)value {
   [indicator setDoubleValue:value];
+}
+
+- (void)setStatus:(NSString *)status {
+  [statusField setStringValue:status];
+}
+
+- (void)setAnimated:(BOOL)animated {
+  if( animated ) {
+    [indicator setUsesThreadedAnimation:YES];
+    [indicator startAnimation:self];
+  } else {
+    [indicator stopAnimation:self];
+  }
 }
 
 @end

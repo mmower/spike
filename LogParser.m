@@ -17,6 +17,7 @@
 #import "ParsingProgressController.h"
 
 #import "NSScanner+SpikeAdditions.h"
+#import "NSData+ZlibAdditions.h"
 
 @interface LogParser (PrivateMethods)
 - (RailsRequest *)parseRequest:(NSArray *)lines;
@@ -47,9 +48,17 @@
 }
 
 
-- (NSArray *)parseLogData:(NSData *)data {
+- (NSArray *)parseLogData:(NSData *)data isCompressed:(BOOL)isCompressed {
   progressController = [[ParsingProgressController alloc] init];
   [progressController showWindow:self];
+  
+  if( isCompressed ) {
+    [progressController setStatus:@"Decompressing log file"];
+    [progressController setAnimated:YES];
+    data = [data gzipInflate];
+  }
+  
+  [progressController setStatus:@"Parsing log file"];
   
   NSString *content = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
   
@@ -323,6 +332,5 @@
   [request setHalted:YES];
   [request setFilter:buffer];
 }
-
 
 @end

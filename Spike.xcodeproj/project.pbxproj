@@ -31,7 +31,7 @@
 		C9AAED650F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED620F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m */; };
 		C9AAED660F46EF0900D6C171 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED640F46EF0900D6C171 /* NSString+TDParseKitAdditions.m */; };
 		C9AAEDD70F4781C500D6C171 /* Parameter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAEDD60F4781C500D6C171 /* Parameter.m */; };
-		C9AAEE1E0F479DFF00D6C171 /* RequestDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAEE1D0F479DFF00D6C171 /* RequestDetailsController.m */; };
+		C9BEA82E0F4C81A400C4F976 /* NSData+ZlibAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BEA82D0F4C81A400C4F976 /* NSData+ZlibAdditions.m */; };
 		C9EEFC290F45B59900054345 /* RailsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEFC280F45B59900054345 /* RailsRequest.m */; };
 		C9EEFC2E0F45B5A300054345 /* LogParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEFC2D0F45B5A300054345 /* LogParser.m */; };
 		C9EEFC510F45C82000054345 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEFC500F45C82000054345 /* AppController.m */; };
@@ -90,8 +90,8 @@
 		C9AAED640F46EF0900D6C171 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
 		C9AAEDD50F4781C500D6C171 /* Parameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parameter.h; sourceTree = "<group>"; };
 		C9AAEDD60F4781C500D6C171 /* Parameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parameter.m; sourceTree = "<group>"; };
-		C9AAEE1C0F479DFF00D6C171 /* RequestDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestDetailsController.h; sourceTree = "<group>"; };
-		C9AAEE1D0F479DFF00D6C171 /* RequestDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestDetailsController.m; sourceTree = "<group>"; };
+		C9BEA82C0F4C81A400C4F976 /* NSData+ZlibAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ZlibAdditions.h"; sourceTree = "<group>"; };
+		C9BEA82D0F4C81A400C4F976 /* NSData+ZlibAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ZlibAdditions.m"; sourceTree = "<group>"; };
 		C9EEFC270F45B59900054345 /* RailsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RailsRequest.h; sourceTree = "<group>"; };
 		C9EEFC280F45B59900054345 /* RailsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RailsRequest.m; sourceTree = "<group>"; };
 		C9EEFC2C0F45B5A300054345 /* LogParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogParser.h; sourceTree = "<group>"; };
@@ -118,6 +118,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C9BEA82C0F4C81A400C4F976 /* NSData+ZlibAdditions.h */,
+				C9BEA82D0F4C81A400C4F976 /* NSData+ZlibAdditions.m */,
 				C9AAED610F46EF0900D6C171 /* NSArray+TDParseKitAdditions.h */,
 				C9AAED620F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m */,
 				C9AAED630F46EF0900D6C171 /* NSString+TDParseKitAdditions.h */,
@@ -132,8 +134,6 @@
 				C9EEFC500F45C82000054345 /* AppController.m */,
 				C9AAEDD50F4781C500D6C171 /* Parameter.h */,
 				C9AAEDD60F4781C500D6C171 /* Parameter.m */,
-				C9AAEE1C0F479DFF00D6C171 /* RequestDetailsController.h */,
-				C9AAEE1D0F479DFF00D6C171 /* RequestDetailsController.m */,
 				C95930680F4871B0004A49FA /* HaltedColumnTransformer.h */,
 				C95930690F4871B0004A49FA /* HaltedColumnTransformer.m */,
 				C921DB880F4AE1D8008A2505 /* ParamParser.h */,
@@ -291,12 +291,12 @@
 				C9AAED650F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m in Sources */,
 				C9AAED660F46EF0900D6C171 /* NSString+TDParseKitAdditions.m in Sources */,
 				C9AAEDD70F4781C500D6C171 /* Parameter.m in Sources */,
-				C9AAEE1E0F479DFF00D6C171 /* RequestDetailsController.m in Sources */,
 				C959306A0F4871B0004A49FA /* HaltedColumnTransformer.m in Sources */,
 				C921DB8A0F4AE1D8008A2505 /* ParamParser.m in Sources */,
 				C92613A90F4C24FF00218378 /* LogDocument.m in Sources */,
 				C92614390F4C32AE00218378 /* ParsingProgressController.m in Sources */,
 				C92614C10F4C591900218378 /* NSScanner+SpikeAdditions.m in Sources */,
+				C9BEA82E0F4C81A400C4F976 /* NSData+ZlibAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +365,7 @@
 				GCC_PREFIX_HEADER = Spike_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = Spike;
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -386,6 +387,7 @@
 				GCC_PREFIX_HEADER = Spike_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = Spike;
 				WARNING_CFLAGS = "-Wall";
 			};

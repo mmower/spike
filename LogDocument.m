@@ -11,12 +11,12 @@
 #import "AppController.h"
 #import "LogParser.h"
 #import "RailsRequest.h"
-// #import "RequestDetailsController.h"
 
 static NSString *SearchToolbarItemIdentifier = @"spike.searchField";
 
 @interface LogDocument (PrivateMethods)
 - (void)parseLogFile:(NSData *)data;
+- (NSData *)gunzipedDataFromData:(NSData *)compressedData;
 @end
 
 @implementation LogDocument
@@ -76,14 +76,29 @@ static NSString *SearchToolbarItemIdentifier = @"spike.searchField";
 #pragma mark Implementation
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
-  [NSThread detachNewThreadSelector:@selector(parseLogFile:) toTarget:self withObject:data];
+  SEL sel;
+  
+  if( [typeName isEqualToString:@"Compressed Log File"] ) {
+    sel = @selector(parseCompressedLogData:);
+  } else {
+    sel = @selector(parseUncompressedLogData:);
+  }
+  
+  [NSThread detachNewThreadSelector:sel toTarget:self withObject:data];
+  
   return YES;
 }
 
 
-- (void)parseLogFile:(NSData *)data {
+- (void)parseCompressedLogData:(NSData *)data {
   LogParser *parser = [[LogParser alloc] initWithDocument:self];
-  [self setRequests:[parser parseLogData:data]];
+  [self setRequests:[parser parseLogData:data isCompressed:YES]];
+  
+}
+
+- (void)parseUncompressedLogData:(NSData *)data {
+  LogParser *parser = [[LogParser alloc] initWithDocument:self];
+  [self setRequests:[parser parseLogData:data isCompressed:NO]];
 }
 
 
