@@ -8,14 +8,12 @@
 
 #import "AppController.h"
 
-#import "RequestDetailsController.h"
-
-@interface AppController (PrivateAppController)
-@end
-
-
 @implementation AppController
 
-#pragma mark Actions
+#pragma mark Delegate hooks
+
+- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {
+  return NO;
+}
 
 @end

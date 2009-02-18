@@ -1,8 +1,9 @@
-h1. <span>2009-02-18</span> Release 1.0.5
+h1. <span>2009-02-18</span> Release 1.0.6
 
 Spike is now document based, open multipe log files
 Spike can handle compressed log files
 Spike supports newer style Rails 2.2+ logfiles
+Spike supports reload with Cmd+R/File>Reload
 
 h1. <span>2009-02-17</span> Release 1.0.4
 
