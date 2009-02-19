@@ -9,6 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 @interface AppController : NSObject {
+  IBOutlet  NSMenuItem                *focusMenuItem;
 }
+
+@property (readonly) NSMenuItem *focusMenuItem;
 
 @end

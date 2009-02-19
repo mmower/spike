@@ -10,6 +10,8 @@
 
 @implementation AppController
 
+@synthesize focusMenuItem;
+
 #pragma mark Delegate hooks
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {

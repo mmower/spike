@@ -15,14 +15,18 @@
             NSArray                   *requests;
             // RequestDetailsController  *requestDetailsController;
             
+            NSPredicate               *filterPredicate;
+            
   IBOutlet  NSArrayController         *requestsController;
   IBOutlet  NSToolbar                 *toolbar;
   IBOutlet  NSSearchField             *searchField;
+            NSToolbarItem             *focusToolbarItem;
 }
 
 @property (assign)    NSArray             *requests;
 @property (assign)    NSArrayController   *requestsController;
 
 - (IBAction)removeSimilarRequests:(id)sender;
+- (IBAction)focusOnRequest:(id)sender;
 
 @end

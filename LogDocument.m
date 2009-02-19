@@ -12,7 +12,10 @@
 #import "LogParser.h"
 #import "RailsRequest.h"
 
-static NSString *SearchToolbarItemIdentifier = @"spike.searchField";
+static NSString *ReloadToolbarItemIdentifier = @"spike.toolbar.reload";
+static NSString *FocusToolbarItemIdentifier = @"spike.toolbar.focus";
+static NSString *RemoveToolbarItemIdentifier = @"spike.toolbar.remove";
+static NSString *SearchToolbarItemIdentifier = @"spike.toolbar.search";
 
 @interface LogDocument (PrivateMethods)
 - (void)parseLogFile:(NSData *)data;
@@ -37,19 +40,35 @@ static NSString *SearchToolbarItemIdentifier = @"spike.searchField";
 #pragma mark NSToolbar delegate implementations
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)aToolbar {
-  return [NSArray arrayWithObjects:NSToolbarFlexibleSpaceItemIdentifier,SearchToolbarItemIdentifier,nil];
+  return [NSArray arrayWithObjects:ReloadToolbarItemIdentifier,FocusToolbarItemIdentifier,RemoveToolbarItemIdentifier,NSToolbarFlexibleSpaceItemIdentifier,SearchToolbarItemIdentifier,nil];
 }
 
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)aToolbar {
-  return [NSArray arrayWithObjects:NSToolbarFlexibleSpaceItemIdentifier,SearchToolbarItemIdentifier,nil];
+  return [NSArray arrayWithObjects:ReloadToolbarItemIdentifier,FocusToolbarItemIdentifier,RemoveToolbarItemIdentifier,NSToolbarFlexibleSpaceItemIdentifier,SearchToolbarItemIdentifier,nil];
 }
 
 
 - (NSToolbarItem *)toolbar:(NSToolbar *)aToolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
   NSToolbarItem *toolbarItem = nil;
   
-  if( [itemIdentifier isEqualTo:SearchToolbarItemIdentifier] ) {
+  if( [itemIdentifier isEqualTo:ReloadToolbarItemIdentifier] ) {
+    toolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
+    [toolbarItem setLabel:@"Reload"];
+    [toolbarItem setImage:[NSImage imageNamed:@"refresh_32.gif"]];
+    [toolbarItem setAction:@selector(revertDocumentToSaved:)];
+  } else if( [itemIdentifier isEqualTo:FocusToolbarItemIdentifier] ) {
+    toolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
+    [toolbarItem setLabel:@"Focus"];
+    [toolbarItem setImage:[NSImage imageNamed:@"search_32.gif"]];
+    [toolbarItem setAction:@selector(focusOnRequest:)];
+    focusToolbarItem = toolbarItem;
+  } else if( [itemIdentifier isEqualTo:RemoveToolbarItemIdentifier] ) {
+    toolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
+    [toolbarItem setLabel:@"Remove"];
+    [toolbarItem setImage:[NSImage imageNamed:@"close_32.gif"]];
+    [toolbarItem setAction:@selector(removeSimilarRequests:)];
+  } else if( [itemIdentifier isEqualTo:SearchToolbarItemIdentifier] ) {
     toolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     [toolbarItem setView:searchField];
     [toolbarItem setMinSize:[searchField frame].size];
@@ -66,9 +85,30 @@ static NSString *SearchToolbarItemIdentifier = @"spike.searchField";
   // Get controller & action of selected request
   RailsRequest *request = [[requestsController selectedObjects] objectAtIndex:0];
   if( request ) {
-    NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"!( controller == %@ AND action == %@ )",[request controller],[request action]];
-    NSLog( @"Deleting using predicate: %@", filterPredicate );
-    [self setRequests:[requests filteredArrayUsingPredicate:filterPredicate]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"!( controller == %@ AND action == %@ )",[request controller],[request action]];
+    [self setRequests:[requests filteredArrayUsingPredicate:predicate]];
+  }
+}
+
+
+- (IBAction)focusOnRequest:(id)sender {
+  
+  NSMenuItem *focusMenuItem = [[NSApp delegate] focusMenuItem];
+  
+  if( [focusMenuItem state] == NSOffState ) {
+    RailsRequest *request = [[requestsController selectedObjects] objectAtIndex:0];
+    if( request ) {
+      [searchField setStringValue:@""];
+      [requestsController setFilterPredicate:[NSPredicate predicateWithFormat:@"controller == %@ AND action == %@",[request controller],[request action]]];
+    }
+    
+    [focusToolbarItem setLabel:@"Unfocus"];
+    [focusMenuItem setState:NSOnState];
+  } else {
+    [requestsController setFilterPredicate:nil];
+    
+    [focusToolbarItem setLabel:@"Focus"];
+    [focusMenuItem setState:NSOffState];
   }
 }
 

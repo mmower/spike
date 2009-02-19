@@ -52,8 +52,8 @@
 					<bool key="NSToolbarShowsBaselineSeparator">YES</bool>
 					<bool key="NSToolbarAllowsUserCustomization">NO</bool>
 					<bool key="NSToolbarAutosavesConfiguration">NO</bool>
-					<int key="NSToolbarDisplayMode">2</int>
-					<int key="NSToolbarSizeMode">1</int>
+					<int key="NSToolbarDisplayMode">1</int>
+					<int key="NSToolbarSizeMode">2</int>
 					<object class="NSMutableDictionary" key="NSToolbarIBIdentifiedItems">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
@@ -92,20 +92,20 @@
 										<object class="NSTableView" id="779069699">
 											<reference key="NSNextResponder" ref="835515830"/>
 											<int key="NSvFlags">256</int>
-											<string key="NSFrameSize">{1133, 683}</string>
+											<string key="NSFrameSize">{1118, 683}</string>
 											<reference key="NSSuperview" ref="835515830"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTableHeaderView" key="NSHeaderView" id="939369185">
 												<reference key="NSNextResponder" ref="423411612"/>
 												<int key="NSvFlags">256</int>
-												<string key="NSFrameSize">{1133, 17}</string>
+												<string key="NSFrameSize">{1118, 17}</string>
 												<reference key="NSSuperview" ref="423411612"/>
 												<reference key="NSTableView" ref="779069699"/>
 											</object>
 											<object class="_NSCornerView" key="NSCornerView" id="920822232">
 												<reference key="NSNextResponder" ref="22040840"/>
-												<int key="NSvFlags">-2147483392</int>
-												<string key="NSFrame">{{-26, 0}, {16, 17}}</string>
+												<int key="NSvFlags">256</int>
+												<string key="NSFrame">{{1119, 0}, {16, 17}}</string>
 												<reference key="NSSuperview" ref="22040840"/>
 											</object>
 											<object class="NSMutableArray" key="NSTableColumns">
@@ -621,7 +621,7 @@
 													<reference key="NSTableView" ref="779069699"/>
 												</object>
 												<object class="NSTableColumn" id="288809240">
-													<double key="NSWidth">8.100000e+01</double>
+													<double key="NSWidth">6.600000e+01</double>
 													<double key="NSMinWidth">1.000000e+01</double>
 													<double key="NSMaxWidth">3.402823e+38</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -710,7 +710,7 @@
 											<bool key="NSAllowsTypeSelect">YES</bool>
 										</object>
 									</object>
-									<string key="NSFrame">{{1, 17}, {1133, 683}}</string>
+									<string key="NSFrame">{{1, 17}, {1118, 683}}</string>
 									<reference key="NSSuperview" ref="22040840"/>
 									<reference key="NSNextKeyView" ref="779069699"/>
 									<reference key="NSDocView" ref="779069699"/>
@@ -719,8 +719,8 @@
 								</object>
 								<object class="NSScroller" id="1007742560">
 									<reference key="NSNextResponder" ref="22040840"/>
-									<int key="NSvFlags">-2147483392</int>
-									<string key="NSFrame">{{1119, 17}, {15, 668}}</string>
+									<int key="NSvFlags">256</int>
+									<string key="NSFrame">{{1119, 17}, {15, 683}}</string>
 									<reference key="NSSuperview" ref="22040840"/>
 									<reference key="NSTarget" ref="22040840"/>
 									<string key="NSAction">_doScroller:</string>
@@ -728,8 +728,8 @@
 								</object>
 								<object class="NSScroller" id="759703972">
 									<reference key="NSNextResponder" ref="22040840"/>
-									<int key="NSvFlags">-2147483392</int>
-									<string key="NSFrame">{{1, 685}, {1133, 15}}</string>
+									<int key="NSvFlags">256</int>
+									<string key="NSFrame">{{-100, -100}, {1118, 15}}</string>
 									<reference key="NSSuperview" ref="22040840"/>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="22040840"/>
@@ -743,7 +743,7 @@
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<reference ref="939369185"/>
 									</object>
-									<string key="NSFrame">{{1, 0}, {1133, 17}}</string>
+									<string key="NSFrame">{{1, 0}, {1118, 17}}</string>
 									<reference key="NSSuperview" ref="22040840"/>
 									<reference key="NSNextKeyView" ref="939369185"/>
 									<reference key="NSDocView" ref="939369185"/>
@@ -755,7 +755,7 @@
 							<string key="NSFrame">{{-1, 20}, {1135, 701}}</string>
 							<reference key="NSSuperview" ref="675698967"/>
 							<reference key="NSNextKeyView" ref="835515830"/>
-							<int key="NSsFlags">562</int>
+							<int key="NSsFlags">18</int>
 							<reference key="NSVScroller" ref="1007742560"/>
 							<reference key="NSHScroller" ref="759703972"/>
 							<reference key="NSContentView" ref="835515830"/>
@@ -1339,6 +1339,22 @@
 					</object>
 					<int key="connectionID">119</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">content: arrangedObjects</string>
+						<reference key="source" ref="779069699"/>
+						<reference key="destination" ref="828286127"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="779069699"/>
+							<reference key="NSDestination" ref="828286127"/>
+							<string key="NSLabel">content: arrangedObjects</string>
+							<string key="NSBinding">content</string>
+							<string key="NSKeyPath">arrangedObjects</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">120</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1821,7 +1837,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">119</int>
+			<int key="maxID">120</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1830,8 +1846,17 @@
 					<string key="className">LogDocument</string>
 					<string key="superclassName">NSDocument</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">removeSimilarRequests:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>focusOnRequest:</string>
+							<string>removeSimilarRequests:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1856,7 +1881,7 @@
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.LastKnownRelativeProjectPath">Spike.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../Spike.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 	</data>
 </archive>

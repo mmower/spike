@@ -11,6 +11,9 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		C905F48D0F4D8164008C9DEC /* close_32.gif in Resources */ = {isa = PBXBuildFile; fileRef = C905F48A0F4D8164008C9DEC /* close_32.gif */; };
+		C905F48E0F4D8164008C9DEC /* refresh_32.gif in Resources */ = {isa = PBXBuildFile; fileRef = C905F48B0F4D8164008C9DEC /* refresh_32.gif */; };
+		C905F48F0F4D8164008C9DEC /* search_32.gif in Resources */ = {isa = PBXBuildFile; fileRef = C905F48C0F4D8164008C9DEC /* search_32.gif */; };
 		C921DB8A0F4AE1D8008A2505 /* ParamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C921DB890F4AE1D8008A2505 /* ParamParser.m */; };
 		C921DBC70F4B03CF008A2505 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C921DBC60F4B03CF008A2505 /* BWToolkitFramework.framework */; };
 		C921DBCB0F4B03E7008A2505 /* BWToolkitFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C921DBC60F4B03CF008A2505 /* BWToolkitFramework.framework */; };
@@ -64,6 +67,9 @@
 		32CA4F630368D1EE00C91783 /* Spike_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spike_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Spike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spike.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C905F48A0F4D8164008C9DEC /* close_32.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = close_32.gif; sourceTree = "<group>"; };
+		C905F48B0F4D8164008C9DEC /* refresh_32.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = refresh_32.gif; sourceTree = "<group>"; };
+		C905F48C0F4D8164008C9DEC /* search_32.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = search_32.gif; sourceTree = "<group>"; };
 		C921DB880F4AE1D8008A2505 /* ParamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParamParser.h; sourceTree = "<group>"; };
 		C921DB890F4AE1D8008A2505 /* ParamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParamParser.m; sourceTree = "<group>"; };
 		C921DBC60F4B03CF008A2505 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = frameworks/BWToolkitFramework.framework; sourceTree = "<group>"; };
@@ -201,6 +207,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C905F48A0F4D8164008C9DEC /* close_32.gif */,
+				C905F48B0F4D8164008C9DEC /* refresh_32.gif */,
+				C905F48C0F4D8164008C9DEC /* search_32.gif */,
 				C926147F0F4C45D800218378 /* LogDocument.xib */,
 				C92614810F4C45D800218378 /* ParsingProgress.xib */,
 				C921DC240F4B4D98008A2505 /* spike.icns */,
@@ -273,6 +282,9 @@
 				C921DC250F4B4D98008A2505 /* spike.icns in Resources */,
 				C92614830F4C45D800218378 /* LogDocument.xib in Resources */,
 				C92614840F4C45D800218378 /* ParsingProgress.xib in Resources */,
+				C905F48D0F4D8164008C9DEC /* close_32.gif in Resources */,
+				C905F48E0F4D8164008C9DEC /* refresh_32.gif in Resources */,
+				C905F48F0F4D8164008C9DEC /* search_32.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

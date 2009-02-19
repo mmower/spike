@@ -28,7 +28,8 @@
 - (void)scanCompleted:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanCompletedOldFormat:(NSString *)line scanner:(NSScanner *)scanner intoRequest:(RailsRequest *)request;
 - (void)scanCompletedNewFormat:(NSString *)line scanner:(NSScanner *)scanner intoRequest:(RailsRequest *)request;
-- (void)scanRender:(NSString *)line intoRequest:(RailsRequest *)request;
+- (void)scanRendering:(NSString *)line intoRequest:(RailsRequest *)request;
+- (void)scanRendered:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanFilter:(NSString *)line intoRequest:(RailsRequest *)request;
 @end
 
@@ -51,24 +52,24 @@
 - (NSArray *)parseLogData:(NSData *)data isCompressed:(BOOL)isCompressed {
   progressController = [[ParsingProgressController alloc] init];
   [progressController showWindow:self];
+  [progressController setAnimated:YES];
   
   if( isCompressed ) {
     [progressController setStatus:@"Decompressing log file"];
-    [progressController setAnimated:YES];
     data = [data gzipInflate];
   }
   
-  [progressController setStatus:@"Parsing log file"];
-  
+  [progressController setStatus:@"Scanning log file"];
   NSString *content = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-  
   NSArray *lines = [content componentsSeparatedByString:@"\n"];
-  NSLog( @"%d lines to parse.", [lines count] );
+  
+  [progressController setStatus:@"Parsing log file"];
   [progressController setMin:0 max:[lines count]];
+  NSLog( @"%d lines to parse.", [lines count] );
   
   NSArray *requests = [self parseLogLines:lines];
-  NSLog( @"%d requests parsed.", [requests count] );
   [progressController close];
+  NSLog( @"%d requests parsed.", [requests count] );
   
   return requests;
 }
@@ -105,6 +106,10 @@
     [progressController update:linesProcessed];
   }
   
+  // Let's not lose the last request
+  if( [lineGroup count] > 0 ) {
+    [requests addObject:[self parseRequest:lineGroup]];
+  }
   
   return requests;
 }
@@ -115,6 +120,7 @@
   
   for( NSString *line in lines ) {
     if( [line hasPrefix:@"Processing"] ) {
+      NSLog( @"Scan: %@", line );
       [self scanProcessing:line intoRequest:request];
     } else if( [line hasPrefix:@"Parameters"] ) {
       [self scanParameters:line intoRequest:request];
@@ -123,7 +129,9 @@
     } else if( [line hasPrefix:@"Completed in"] ) {
       [self scanCompleted:line intoRequest:request];
     } else if( [line hasPrefix:@"Rendering"] ) {
-      [self scanRender:line intoRequest:request];
+      [self scanRendering:line intoRequest:request];
+    } else if( [line hasPrefix:@"Rendered"] ) {
+      [self scanRendered:line intoRequest:request];
     } else if( [line hasPrefix:@"Filter"] ) {
       [self scanFilter:line intoRequest:request];
     }
@@ -308,7 +316,7 @@
 }
 
 
-- (void)scanRender:(NSString *)line intoRequest:(RailsRequest *)request {
+- (void)scanRendering:(NSString *)line intoRequest:(RailsRequest *)request {
   NSString *render = [line substringFromIndex:10];
   
   if( [render rangeOfString:@"(internal_server_error)"].location != NSNotFound || [render rangeOfString:@"(not_found)"].location != NSNotFound ) {
@@ -319,6 +327,12 @@
   } else {
     [[request renders] addObject:render];
   }
+}
+
+
+- (void)scanRendered:(NSString *)line intoRequest:(RailsRequest *)request {
+  NSString *render = [line substringFromIndex:9];
+  [[request renders] addObject:render];
 }
 
 
