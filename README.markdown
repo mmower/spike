@@ -20,7 +20,7 @@ Spike has only been tested on a handful of log files at this point. If Spike doe
 
 ## Download
 
-<a href="http://lucidmac.com/pkg/spike/Spike-1.0.4.dmg">Spike 1.0.4</a>
+<a href="http://lucidmac.com/pkg/spike/Spike-1.0.7.dmg">Spike 1.0.7</a>
 
 Spike is a universal binary for Mac OS X 10.5
 
