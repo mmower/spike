@@ -1,3 +1,9 @@
+h1. <span>2009-02-19</span> Release 1.0.7
+
+With grateful thanks to <a href="http://www.brockerhoff.net/products.html">Rainer Brockerhoff</a> mystery empty table bug fixed!
+Spike has an improved toolbar
+Spike adds "Focus" action to narrow view to a single controller/action
+
 h1. <span>2009-02-18</span> Release 1.0.6
 
 Spike is now document based, open multipe log files

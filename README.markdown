@@ -31,9 +31,10 @@ View a short [demo movie](http://www.screencast.com/users/sandbags/folders/Jing/
 ## Acknowledgements
 
 * [Todd Ditchendorf](http://ditchnet.org/) for [TDParseKit](http://ditchnet.org/tdparsekit/)
-* [Brandon Walkin](http://www.brandonwalkin.com/) for [BWToolkit](http://www.brandonwalkin.com/blog/2008/11/13/introducing-bwtoolkit/)
-* [Andy Matuschak](http://andymatuschak.org/) for [Sparkle](http://sparkle.andymatuschak.org/)
 * [Samo Korosec](http://froodee.at) for the Spike icon
+* [Rainer Brockerhoff](http://www.brockerhoff.net/products.html) for general awesomeness in the face of problems
+* [Andy Matuschak](http://andymatuschak.org/) for [Sparkle](http://sparkle.andymatuschak.org/)
+* [Brandon Walkin](http://www.brandonwalkin.com/) for [BWToolkit](http://www.brandonwalkin.com/blog/2008/11/13/introducing-bwtoolkit/)
 
 ## About the author
 
