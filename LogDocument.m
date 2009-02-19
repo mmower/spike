@@ -29,7 +29,6 @@ static NSString *SearchToolbarItemIdentifier = @"spike.toolbar.search";
   [self addWindowController:documentController];
   NSWindowController *detailsController = [[NSWindowController alloc] initWithWindowNibName:@"RequestDetails" owner:self];
   [self addWindowController:detailsController];
-  // [detailsController showWindow:self];
 }
 
 
@@ -132,13 +131,12 @@ static NSString *SearchToolbarItemIdentifier = @"spike.toolbar.search";
 
 - (void)parseCompressedLogData:(NSData *)data {
   LogParser *parser = [[LogParser alloc] initWithDocument:self];
-  [self setRequests:[parser parseLogData:data isCompressed:YES]];
-  
+  [self performSelectorOnMainThread:@selector(setRequests:) withObject:[parser parseLogData:data isCompressed:YES] waitUntilDone:YES];
 }
 
 - (void)parseUncompressedLogData:(NSData *)data {
   LogParser *parser = [[LogParser alloc] initWithDocument:self];
-  [self setRequests:[parser parseLogData:data isCompressed:NO]];
+  [self performSelectorOnMainThread:@selector(setRequests:) withObject:[parser parseLogData:data isCompressed:NO] waitUntilDone:YES];
 }
 
 
