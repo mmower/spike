@@ -16,6 +16,7 @@
   NSString            *url;
   NSString            *controller;
   NSString            *action;
+  NSString            *format;
   NSString            *session;
   int                 rps;
   float               realTime;
@@ -35,6 +36,7 @@
 @property (assign)  NSString            *url;
 @property (assign)  NSString            *controller;
 @property (assign)  NSString            *action;
+@property (assign)  NSString            *format;
 @property (assign)  NSString            *session;
 @property           int                 rps;
 @property           float               realTime;
@@ -45,5 +47,7 @@
 @property (assign)  NSAttributedString  *sourceLog;
 @property           BOOL                halted;
 @property (assign)  NSString            *filter;
+
+- (void)postProcess;
 
 @end

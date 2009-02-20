@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="49"/>
+			<integer value="48"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -316,7 +316,7 @@
 													<reference key="NSTableView" ref="779069699"/>
 												</object>
 												<object class="NSTableColumn" id="529200762">
-													<double key="NSWidth">6.300000e+01</double>
+													<double key="NSWidth">7.600000e+01</double>
 													<double key="NSMinWidth">4.000000e+01</double>
 													<double key="NSMaxWidth">1.000000e+03</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -341,7 +341,7 @@
 													<reference key="NSTableView" ref="779069699"/>
 												</object>
 												<object class="NSTableColumn" id="699577614">
-													<double key="NSWidth">1.440000e+02</double>
+													<double key="NSWidth">1.140000e+02</double>
 													<double key="NSMinWidth">1.000000e+01</double>
 													<double key="NSMaxWidth">3.402823e+38</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -366,7 +366,7 @@
 													<reference key="NSTableView" ref="779069699"/>
 												</object>
 												<object class="NSTableColumn" id="571724638">
-													<double key="NSWidth">2.290000e+02</double>
+													<double key="NSWidth">1.750000e+02</double>
 													<double key="NSMinWidth">1.000000e+01</double>
 													<double key="NSMaxWidth">3.402823e+38</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -391,7 +391,7 @@
 													<reference key="NSTableView" ref="779069699"/>
 												</object>
 												<object class="NSTableColumn" id="290974767">
-													<double key="NSWidth">1.560000e+02</double>
+													<double key="NSWidth">1.580000e+02</double>
 													<double key="NSMinWidth">1.000000e+01</double>
 													<double key="NSMaxWidth">3.402823e+38</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -413,6 +413,32 @@
 													</object>
 													<int key="NSResizingMask">3</int>
 													<bool key="NSIsResizeable">YES</bool>
+													<reference key="NSTableView" ref="779069699"/>
+												</object>
+												<object class="NSTableColumn" id="619011303">
+													<double key="NSWidth">6.400000e+01</double>
+													<double key="NSMinWidth">1.000000e+01</double>
+													<double key="NSMaxWidth">3.402823e+38</double>
+													<object class="NSTableHeaderCell" key="NSHeaderCell">
+														<int key="NSCellFlags">75628032</int>
+														<int key="NSCellFlags2">0</int>
+														<string key="NSContents">Format</string>
+														<reference key="NSSupport" ref="26"/>
+														<reference key="NSBackgroundColor" ref="750831254"/>
+														<reference key="NSTextColor" ref="239564836"/>
+													</object>
+													<object class="NSTextFieldCell" key="NSDataCell" id="898264982">
+														<int key="NSCellFlags">337772096</int>
+														<int key="NSCellFlags2">2048</int>
+														<string key="NSContents">Text Cell</string>
+														<reference key="NSSupport" ref="327505600"/>
+														<reference key="NSControlView" ref="779069699"/>
+														<reference key="NSBackgroundColor" ref="759442697"/>
+														<reference key="NSTextColor" ref="143724826"/>
+													</object>
+													<int key="NSResizingMask">3</int>
+													<bool key="NSIsResizeable">YES</bool>
+													<bool key="NSIsEditable">YES</bool>
 													<reference key="NSTableView" ref="779069699"/>
 												</object>
 												<object class="NSTableColumn" id="49245403">
@@ -621,7 +647,7 @@
 													<reference key="NSTableView" ref="779069699"/>
 												</object>
 												<object class="NSTableColumn" id="288809240">
-													<double key="NSWidth">6.600000e+01</double>
+													<double key="NSWidth">6.800000e+01</double>
 													<double key="NSMinWidth">1.000000e+01</double>
 													<double key="NSMaxWidth">3.402823e+38</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -752,7 +778,7 @@
 								</object>
 								<reference ref="920822232"/>
 							</object>
-							<string key="NSFrame">{{-1, 20}, {1135, 701}}</string>
+							<string key="NSFrame">{{-1, 19}, {1135, 701}}</string>
 							<reference key="NSSuperview" ref="675698967"/>
 							<reference key="NSNextKeyView" ref="835515830"/>
 							<int key="NSsFlags">18</int>
@@ -816,6 +842,7 @@
 					<string>dbTime</string>
 					<string>halted</string>
 					<string>@count</string>
+					<string>format</string>
 				</object>
 				<string key="NSObjectClassName">RailsRequest</string>
 				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
@@ -1298,7 +1325,7 @@
 						<string key="label">predicate5: filterPredicate</string>
 						<reference key="source" ref="867502116"/>
 						<reference key="destination" ref="828286127"/>
-						<object class="NSNibBindingConnector" key="connector">
+						<object class="NSNibBindingConnector" key="connector" id="46046928">
 							<reference key="NSSource" ref="867502116"/>
 							<reference key="NSDestination" ref="828286127"/>
 							<string key="NSLabel">predicate5: filterPredicate</string>
@@ -1354,6 +1381,52 @@
 						</object>
 					</object>
 					<int key="connectionID">120</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: arrangedObjects.format</string>
+						<reference key="source" ref="619011303"/>
+						<reference key="destination" ref="828286127"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="619011303"/>
+							<reference key="NSDestination" ref="828286127"/>
+							<string key="NSLabel">value: arrangedObjects.format</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">arrangedObjects.format</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">124</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">predicate6: filterPredicate</string>
+						<reference key="source" ref="867502116"/>
+						<reference key="destination" ref="828286127"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="867502116"/>
+							<reference key="NSDestination" ref="828286127"/>
+							<string key="NSLabel">predicate6: filterPredicate</string>
+							<string key="NSBinding">predicate6</string>
+							<string key="NSKeyPath">filterPredicate</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSDisplayName</string>
+									<string>NSPredicateFormat</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Format</string>
+									<string>format contains $value</string>
+								</object>
+							</object>
+							<reference key="NSPreviousConnector" ref="46046928"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">127</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1458,6 +1531,7 @@
 							<reference ref="294294542"/>
 							<reference ref="288809240"/>
 							<reference ref="1027880768"/>
+							<reference ref="619011303"/>
 						</object>
 						<reference key="parent" ref="22040840"/>
 					</object>
@@ -1704,6 +1778,20 @@
 						<reference key="object" ref="656364118"/>
 						<reference key="parent" ref="867502116"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">122</int>
+						<reference key="object" ref="619011303"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="898264982"/>
+						</object>
+						<reference key="parent" ref="779069699"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">123</int>
+						<reference key="object" ref="898264982"/>
+						<reference key="parent" ref="619011303"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1770,8 +1858,8 @@
 					<string>{{368, 1112}, {390, 22}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{411, 86}, {1133, 720}}</string>
-					<string>{{411, 86}, {1133, 720}}</string>
+					<string>{{3, 50}, {1133, 720}}</string>
+					<string>{{3, 50}, {1133, 720}}</string>
 					<reference ref="9"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<string>{3.40282e+38, 3.40282e+38}</string>
@@ -1837,7 +1925,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">121</int>
+			<int key="maxID">127</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

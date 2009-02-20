@@ -139,6 +139,8 @@
   
   [request setSourceLog:[[NSAttributedString alloc] initWithString:[lines description]]];
   
+  [request postProcess];
+  
   return request;
 }
 
