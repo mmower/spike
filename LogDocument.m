@@ -134,6 +134,7 @@ static NSString *SearchToolbarItemIdentifier = @"spike.toolbar.search";
   [self performSelectorOnMainThread:@selector(setRequests:) withObject:[parser parseLogData:data isCompressed:YES] waitUntilDone:YES];
 }
 
+
 - (void)parseUncompressedLogData:(NSData *)data {
   LogParser *parser = [[LogParser alloc] initWithDocument:self];
   [self performSelectorOnMainThread:@selector(setRequests:) withObject:[parser parseLogData:data isCompressed:NO] waitUntilDone:YES];
