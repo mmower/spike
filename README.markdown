@@ -24,6 +24,10 @@ Spike has only been tested on a handful of log files at this point. If Spike doe
 
 Spike is a universal binary for Mac OS X 10.5
 
+## Support
+
+If you have problems with Spike, or would like to suggest new features [we have you covered](http://getsatisfaction.com/lucidmac/products/lucidmac_spike).
+
 ## Demo
 
 View a short [demo movie](http://www.screencast.com/users/sandbags/folders/Jing/media/cdde1cdd-a4b6-4246-a562-088daecb543c)
