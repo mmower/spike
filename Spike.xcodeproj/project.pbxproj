@@ -24,6 +24,7 @@
 		C92614830F4C45D800218378 /* LogDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = C926147F0F4C45D800218378 /* LogDocument.xib */; };
 		C92614840F4C45D800218378 /* ParsingProgress.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92614810F4C45D800218378 /* ParsingProgress.xib */; };
 		C92614C10F4C591900218378 /* NSScanner+SpikeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C92614C00F4C591900218378 /* NSScanner+SpikeAdditions.m */; };
+		C9522C100F4F738E00CE32AA /* ticked_checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = C9522C0F0F4F738E00CE32AA /* ticked_checkbox.png */; };
 		C9592FB60F483CF5004A49FA /* RequestDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9592FB40F483CF5004A49FA /* RequestDetails.xib */; };
 		C9592FBB0F483D45004A49FA /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9592FBA0F483D45004A49FA /* TDParseKit.framework */; };
 		C9592FBE0F483D4B004A49FA /* TDParseKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C9592FBA0F483D45004A49FA /* TDParseKit.framework */; };
@@ -84,6 +85,7 @@
 		C92614820F4C45D800218378 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ParsingProgress.xib; sourceTree = "<group>"; };
 		C92614BF0F4C591900218378 /* NSScanner+SpikeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+SpikeAdditions.h"; sourceTree = "<group>"; };
 		C92614C00F4C591900218378 /* NSScanner+SpikeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+SpikeAdditions.m"; sourceTree = "<group>"; };
+		C9522C0F0F4F738E00CE32AA /* ticked_checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ticked_checkbox.png; sourceTree = "<group>"; };
 		C9592FB50F483CF5004A49FA /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/RequestDetails.xib; sourceTree = "<group>"; };
 		C9592FBA0F483D45004A49FA /* TDParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TDParseKit.framework; path = frameworks/TDParseKit.framework; sourceTree = "<group>"; };
 		C95930680F4871B0004A49FA /* HaltedColumnTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaltedColumnTransformer.h; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C9522C0F0F4F738E00CE32AA /* ticked_checkbox.png */,
 				C905F48A0F4D8164008C9DEC /* close_32.gif */,
 				C905F48B0F4D8164008C9DEC /* refresh_32.gif */,
 				C905F48C0F4D8164008C9DEC /* search_32.gif */,
@@ -289,6 +292,7 @@
 				C905F48E0F4D8164008C9DEC /* refresh_32.gif in Resources */,
 				C905F48F0F4D8164008C9DEC /* search_32.gif in Resources */,
 				C905F56A0F4E20F3008C9DEC /* Credits.rtf in Resources */,
+				C9522C100F4F738E00CE32AA /* ticked_checkbox.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

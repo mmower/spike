@@ -10,12 +10,6 @@
 
 @implementation HaltedColumnTransformer
 
-// + (void)initialize {
-//   if( !onImage ) {
-//     onImage = [NSImage imageNamed:@"red_dot.tif"];
-//   }
-// }
-
 + (Class)transformedValueClass {
   return [NSImage class];
 }
@@ -26,7 +20,7 @@
 
 - (id)transformedValue:(id)value {
   if( [value boolValue] ) {
-    return [NSImage imageNamed:@"NSActionTemplate"];
+    return [NSImage imageNamed:@"ticked_checkbox.png"];
   } else {
     return nil;
   }
