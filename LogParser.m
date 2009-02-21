@@ -60,6 +60,9 @@
     data = [data gzipInflate];
   }
   
+  // Take only new data
+  data = [data subdataWithRange:NSMakeRange( highWaterMark, [data length] - highWaterMark )];
+  
   [progressController setStatus:@"Scanning log data"];
   NSString *content = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
   NSArray *lines = [content componentsSeparatedByString:@"\n"];
@@ -71,7 +74,7 @@
   NSArray *requests = [self parseLogLines:lines];
   NSLog( @"%d requests parsed.", [requests count] );
   
-  highWaterMark = [data length];
+  highWaterMark += [data length];
   
   [document performSelectorOnMainThread:@selector(setRequests:) withObject:requests waitUntilDone:YES];
 

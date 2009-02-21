@@ -135,7 +135,7 @@ static NSMutableDictionary *HTTPMethodColors;
     toolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     [toolbarItem setLabel:@"Reload"];
     [toolbarItem setImage:[NSImage imageNamed:@"refresh_32.gif"]];
-    [toolbarItem setAction:@selector(revertDocumentToSaved:)];
+    [toolbarItem setAction:@selector(reloadChangedLog:)];
   } else if( [itemIdentifier isEqualTo:FocusToolbarItemIdentifier] ) {
     toolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     [toolbarItem setLabel:@"Focus"];
@@ -215,6 +215,19 @@ static NSMutableDictionary *HTTPMethodColors;
     [focusToolbarItem setLabel:@"Focus"];
     [focusMenuItem setState:NSOffState];
   }
+}
+
+
+/*
+ * Reloads the log data but only reparses what is new since the last parse.
+ */
+- (IBAction)reloadChangedLog:(id)sender {
+  NSLog( @"reloadChangedLog:" );
+  // The parser handles the log data on a background thread. When it is done
+  // it will call back on the main thread to set the requests property.
+  [NSThread detachNewThreadSelector:@selector(parseLogData:)
+                           toTarget:logParser
+                         withObject:[NSData dataWithContentsOfURL:[self fileURL]]];
 }
 
 
