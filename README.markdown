@@ -20,7 +20,7 @@ Spike has only been tested on a handful of log files at this point. If Spike doe
 
 ## Download
 
-<a href="http://lucidmac.com/pkg/spike/Spike-1.0.8.dmg">Spike 1.0.8</a>
+<a href="http://lucidmac.com/pkg/spike/Spike-1.0.9.dmg">Spike 1.0.9</a>
 
 Spike is a universal binary for Mac OS X 10.5
 
@@ -36,7 +36,7 @@ View a short [demo movie](http://www.screencast.com/users/sandbags/folders/Jing/
 
 * [Todd Ditchendorf](http://ditchnet.org/) for [TDParseKit](http://ditchnet.org/tdparsekit/)
 * [Samo Korosec](http://froodee.at) for the Spike icon
-* [Rainer Brockerhoff](http://www.brockerhoff.net/products.html) for general awesomeness in the face of problems
+* [Rainer Brockerhoff](http://www.brockerhoff.net/products.html) for general awesomeness in the face of tough problems
 * [Andy Matuschak](http://andymatuschak.org/) for [Sparkle](http://sparkle.andymatuschak.org/)
 * [Brandon Walkin](http://www.brandonwalkin.com/) for [BWToolkit](http://www.brandonwalkin.com/blog/2008/11/13/introducing-bwtoolkit/)
 
