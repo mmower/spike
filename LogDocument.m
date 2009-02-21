@@ -75,6 +75,13 @@ static NSMutableDictionary *HTTPMethodColors;
 }
 
 
+#pragma mark NSWindow delegate implementation
+
+- (void)windowWillClose:(NSNotification *)notification {
+  [self close];
+}
+
+
 #pragma mark NSToolbar delegate implementations
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)aToolbar {
