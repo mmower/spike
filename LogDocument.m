@@ -17,12 +17,43 @@ static NSString *FocusToolbarItemIdentifier = @"spike.toolbar.focus";
 static NSString *RemoveToolbarItemIdentifier = @"spike.toolbar.remove";
 static NSString *SearchToolbarItemIdentifier = @"spike.toolbar.search";
 
+float adjusted_brightness( float brightness ) {
+  brightness *= 1.5;
+  if( brightness > 1.0 ) {
+    brightness = 1.0;
+  }
+  return brightness;
+}
+
+static NSMutableDictionary *HTTPMethodColors;
+
 @interface LogDocument (PrivateMethods)
++ (NSColor *)colorForHTTPMethod:(NSString *)method;
 - (void)parseLogFile:(NSData *)data;
 - (NSData *)gunzipedDataFromData:(NSData *)compressedData;
 @end
 
 @implementation LogDocument
+
++ (void)initialize {
+  if( !HTTPMethodColors ) {
+    HTTPMethodColors = [NSMutableDictionary dictionaryWithCapacity:4];
+    
+    [HTTPMethodColors setObject:[NSColor colorWithDeviceRed:(20.0/255) green:(128.0/255) blue:(65.0/255) alpha:1.0] forKey:@"GET"];
+    [HTTPMethodColors setObject:[NSColor blueColor] forKey:@"PUT"];
+    [HTTPMethodColors setObject:[NSColor blueColor] forKey:@"POST"];
+    [HTTPMethodColors setObject:[NSColor redColor] forKey:@"DELETE"];
+  }
+}
+
++ (NSColor *)colorForHTTPMethod:(NSString *)method {
+  NSColor *color = [HTTPMethodColors objectForKey:[method uppercaseString]];
+  if( color ) {
+    return color;
+  } else {
+    return [NSColor controlTextColor];
+  }
+}
 
 - (void)makeWindowControllers {
   NSWindowController *documentController = [[NSWindowController alloc] initWithWindowNibName:@"LogDocument" owner:self];
@@ -75,6 +106,21 @@ static NSString *SearchToolbarItemIdentifier = @"spike.toolbar.search";
   }
   
   return toolbarItem;
+}
+
+
+#pragma mark NSTableView delegate implementations
+
+- (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex {
+  if( [[tableColumn identifier] isEqualToString:@"method"] ) {
+    NSColor *color = [[self class] colorForHTTPMethod:[cell stringValue]];
+    if( rowIndex == [tableView selectedRow] ) {
+      color = [NSColor colorWithDeviceHue:[color hueComponent] saturation:[color saturationComponent] brightness:adjusted_brightness([color brightnessComponent]) alpha:1.0];
+    }
+    [cell setTextColor:color];
+  } else if( [cell respondsToSelector:@selector(setTextColor:)]) {
+    [cell setTextColor:[NSColor controlTextColor]];
+  }
 }
 
 
