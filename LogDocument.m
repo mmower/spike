@@ -28,16 +28,23 @@ float adjusted_brightness( float brightness ) {
 static NSMutableDictionary *HTTPMethodColors;
 
 @interface LogDocument (PrivateMethods)
-+ (NSColor *)colorForHTTPMethod:(NSString *)method;
-- (void)parseLogFile:(NSData *)data;
++ (NSColor *)colorForHTTPMethod:(NSString *)method brighten:(BOOL)brighten;
+- (void)parseLogData:(NSData *)data;
 - (NSData *)gunzipedDataFromData:(NSData *)compressedData;
 @end
 
 @implementation LogDocument
 
-+ (NSColor *)colorForHTTPMethod:(NSString *)method {
+/*
+ * Returns an NSColor associated with the specified HTTP method and, optionally,
+ * brightens the colour first.
+ */
++ (NSColor *)colorForHTTPMethod:(NSString *)method brighten:(BOOL)brighten {
   NSColor *color = [HTTPMethodColors objectForKey:[method uppercaseString]];
   if( color ) {
+    if( brighten ) {
+      color = [NSColor colorWithDeviceHue:[color hueComponent] saturation:[color saturationComponent] brightness:adjusted_brightness([color brightnessComponent]) alpha:1.0];
+    }
     return color;
   } else {
     return [NSColor controlTextColor];
@@ -57,6 +64,7 @@ static NSMutableDictionary *HTTPMethodColors;
 }
 
 
+@synthesize compressedLog;
 @synthesize requests;
 @synthesize requestsController;
 
@@ -64,11 +72,10 @@ static NSMutableDictionary *HTTPMethodColors;
 #pragma mark NSDocument implementation
 
 - (void)makeWindowControllers {
-  NSWindowController *documentController = [[NSWindowController alloc] initWithWindowNibName:@"LogDocument" owner:self];
-  [self addWindowController:documentController];
-  NSWindowController *detailsController = [[NSWindowController alloc] initWithWindowNibName:@"RequestDetails" owner:self];
-  [self addWindowController:detailsController];
+  [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"LogDocument" owner:self]];
+  [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"RequestDetails" owner:self]];
 }
+
 
 - (NSString *)displayName {
   return [[self fileURL] path];
@@ -77,6 +84,29 @@ static NSMutableDictionary *HTTPMethodColors;
 
 #pragma mark NSWindow delegate implementation
 
+/*
+ * Trigger a read of the logfile from a background thread. The thread will update
+ * the user interface when the data has been parsed. Detects whether the document
+ * corresponds to a gzip'd log and triggers decompression where necessary.
+ */
+- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
+  if( [typeName isEqualToString:@"Compressed Log File"] ) {
+    [self setCompressedLog:YES];
+  } else {
+    [self setCompressedLog:NO];
+  }
+  
+  [NSThread detachNewThreadSelector:@selector(parseLogData:) toTarget:self withObject:data];
+  
+  // Always return YES. Not quite sure what we should do if there is ever an error
+  // in the legitimate load process.
+  return YES;
+}
+
+
+/*
+ * Close document when main window closes.
+ */
 - (void)windowWillClose:(NSNotification *)notification {
   [self close];
 }
@@ -126,13 +156,16 @@ static NSMutableDictionary *HTTPMethodColors;
 
 #pragma mark NSTableView delegate implementations
 
+
+/*
+ * For the HTTP Method column, color the text appropriately. All other text columns
+ * get the default color. The selected row gets a brighter color to compensate for
+ * the dark background of that row.
+ */
 - (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex {
   if( [[tableColumn identifier] isEqualToString:@"method"] ) {
-    NSColor *color = [[self class] colorForHTTPMethod:[cell stringValue]];
-    if( rowIndex == [tableView selectedRow] ) {
-      color = [NSColor colorWithDeviceHue:[color hueComponent] saturation:[color saturationComponent] brightness:adjusted_brightness([color brightnessComponent]) alpha:1.0];
-    }
-    [cell setTextColor:color];
+    [cell setTextColor:[[self class] colorForHTTPMethod:[cell stringValue]
+                                               brighten:(rowIndex == [tableView selectedRow])]];
   } else if( [cell respondsToSelector:@selector(setTextColor:)]) {
     [cell setTextColor:[NSColor controlTextColor]];
   }
@@ -141,8 +174,11 @@ static NSMutableDictionary *HTTPMethodColors;
 
 #pragma mark Actions
 
+/*
+ * Destructively remove all requests from the table that match the currently
+ * selected controller & action.
+ */
 - (IBAction)removeSimilarRequests:(id)sender {
-  // Get controller & action of selected request
   RailsRequest *request = [[requestsController selectedObjects] objectAtIndex:0];
   if( request ) {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"!( controller == %@ AND action == %@ )",[request controller],[request action]];
@@ -151,6 +187,11 @@ static NSMutableDictionary *HTTPMethodColors;
 }
 
 
+/*
+ * Remove any user supplied filter predicate and replace with a predicate to
+ * select only those rows matching the currently selected rows controller and
+ * action.
+ */
 - (IBAction)focusOnRequest:(id)sender {
   
   NSMenuItem *focusMenuItem = [[NSApp delegate] focusMenuItem];
@@ -175,30 +216,14 @@ static NSMutableDictionary *HTTPMethodColors;
 
 #pragma mark Implementation
 
-- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
-  SEL sel;
-  
-  if( [typeName isEqualToString:@"Compressed Log File"] ) {
-    sel = @selector(parseCompressedLogData:);
-  } else {
-    sel = @selector(parseUncompressedLogData:);
-  }
-  
-  [NSThread detachNewThreadSelector:sel toTarget:self withObject:data];
-  
-  return YES;
-}
-
-
-- (void)parseCompressedLogData:(NSData *)data {
+/*
+ * Parse the data read from the logfile passing on whether the log data is compressed
+ * or not. The resulting array of RailsRequest instances assigned to the 'requests'
+ * property back on the main thread.
+ */
+- (void)parseLogData:(NSData *)data {
   LogParser *parser = [[LogParser alloc] initWithDocument:self];
-  [self performSelectorOnMainThread:@selector(setRequests:) withObject:[parser parseLogData:data isCompressed:YES] waitUntilDone:YES];
-}
-
-
-- (void)parseUncompressedLogData:(NSData *)data {
-  LogParser *parser = [[LogParser alloc] initWithDocument:self];
-  [self performSelectorOnMainThread:@selector(setRequests:) withObject:[parser parseLogData:data isCompressed:NO] waitUntilDone:YES];
+  [self performSelectorOnMainThread:@selector(setRequests:) withObject:[parser parseLogData:data isCompressed:[self compressedLog]] waitUntilDone:YES];
 }
 
 

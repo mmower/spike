@@ -12,8 +12,8 @@
 // @class RequestDetailsController;
 
 @interface LogDocument : NSDocument {
+            BOOL                      compressedLog;
             NSArray                   *requests;
-            // RequestDetailsController  *requestDetailsController;
             
             NSPredicate               *filterPredicate;
             
@@ -23,6 +23,7 @@
             NSToolbarItem             *focusToolbarItem;
 }
 
+@property             BOOL                compressedLog;
 @property (assign)    NSArray             *requests;
 @property (assign)    NSArrayController   *requestsController;
 
