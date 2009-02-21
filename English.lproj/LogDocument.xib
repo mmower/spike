@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="49"/>
+			<integer value="47"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -212,7 +212,7 @@
 														</object>
 														<reference key="NSTextColor" ref="239564836"/>
 													</object>
-													<object class="NSImageCell" key="NSDataCell" id="247505778">
+													<object class="NSImageCell" key="NSDataCell" id="58945935">
 														<int key="NSCellFlags">67239424</int>
 														<int key="NSCellFlags2">33685504</int>
 														<reference key="NSSupport" ref="26"/>
@@ -737,7 +737,7 @@
 												</object>
 											</object>
 											<double key="NSRowHeight">1.700000e+01</double>
-											<int key="NSTvFlags">-700448768</int>
+											<int key="NSTvFlags">-767557632</int>
 											<int key="NSColumnAutoresizingStyle">4</int>
 											<int key="NSDraggingSourceMaskForLocal">15</int>
 											<int key="NSDraggingSourceMaskForNonLocal">0</int>
@@ -1641,7 +1641,7 @@
 						<reference key="object" ref="1027880768"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="247505778"/>
+							<reference ref="58945935"/>
 						</object>
 						<reference key="parent" ref="779069699"/>
 					</object>
@@ -1790,7 +1790,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">135</int>
-						<reference key="object" ref="247505778"/>
+						<reference key="object" ref="58945935"/>
 						<reference key="parent" ref="1027880768"/>
 					</object>
 				</object>
