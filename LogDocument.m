@@ -35,6 +35,16 @@ static NSMutableDictionary *HTTPMethodColors;
 
 @implementation LogDocument
 
++ (NSColor *)colorForHTTPMethod:(NSString *)method {
+  NSColor *color = [HTTPMethodColors objectForKey:[method uppercaseString]];
+  if( color ) {
+    return color;
+  } else {
+    return [NSColor controlTextColor];
+  }
+}
+
+
 + (void)initialize {
   if( !HTTPMethodColors ) {
     HTTPMethodColors = [NSMutableDictionary dictionaryWithCapacity:4];
@@ -46,14 +56,12 @@ static NSMutableDictionary *HTTPMethodColors;
   }
 }
 
-+ (NSColor *)colorForHTTPMethod:(NSString *)method {
-  NSColor *color = [HTTPMethodColors objectForKey:[method uppercaseString]];
-  if( color ) {
-    return color;
-  } else {
-    return [NSColor controlTextColor];
-  }
-}
+
+@synthesize requests;
+@synthesize requestsController;
+
+
+#pragma mark NSDocument implementation
 
 - (void)makeWindowControllers {
   NSWindowController *documentController = [[NSWindowController alloc] initWithWindowNibName:@"LogDocument" owner:self];
@@ -62,9 +70,9 @@ static NSMutableDictionary *HTTPMethodColors;
   [self addWindowController:detailsController];
 }
 
-
-@synthesize requests;
-@synthesize requestsController;
+- (NSString *)displayName {
+  return [[self fileURL] path];
+}
 
 
 #pragma mark NSToolbar delegate implementations
