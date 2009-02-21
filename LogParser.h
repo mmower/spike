@@ -18,11 +18,13 @@
   NSDateFormatter             *dateParser;
   ParamParser                 *paramParser;
   
+  NSUInteger                  highWaterMark;
+  
   ParsingProgressController   *progressController;
 }
 
 - (id)initWithDocument:(LogDocument *)theDocument;
 
-- (NSArray *)parseLogData:(NSData *)data isCompressed:(BOOL)isCompressed;
+- (void)parseLogData:(NSData *)data;
 
 @end

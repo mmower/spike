@@ -38,40 +38,44 @@
 
 - (id)initWithDocument:(LogDocument *)theDocument {
   if( ( self = [super init] ) ) {
-    document = theDocument;
-    dateParser = [[NSDateFormatter alloc] init];
+    document      = theDocument;
+    dateParser    = [[NSDateFormatter alloc] init];
     [dateParser setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
-    paramParser = [[ParamParser alloc] init];
+    paramParser   = [[ParamParser alloc] init];
+    highWaterMark = 0;
   }
   
   return self;
 }
 
 
-- (NSArray *)parseLogData:(NSData *)data isCompressed:(BOOL)isCompressed {
+- (void)parseLogData:(NSData *)data {
   progressController = [[ParsingProgressController alloc] init];
   [progressController showWindow:self];
   [progressController setAnimated:YES];
   
-  if( isCompressed ) {
-    [progressController setStatus:@"Decompressing log file"];
+  if( [document compressedLog] ) {
+    [progressController setStatus:@"Decompressing log data"];
     data = [data gzipInflate];
   }
   
-  [progressController setStatus:@"Scanning log file"];
+  [progressController setStatus:@"Scanning log data"];
   NSString *content = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
   NSArray *lines = [content componentsSeparatedByString:@"\n"];
   
-  [progressController setStatus:@"Parsing log file"];
+  [progressController setStatus:@"Parsing log data"];
   [progressController setMin:0 max:[lines count]];
   NSLog( @"%d lines to parse.", [lines count] );
   
   NSArray *requests = [self parseLogLines:lines];
-  [progressController close];
   NSLog( @"%d requests parsed.", [requests count] );
   
-  return requests;
+  highWaterMark = [data length];
+  
+  [document performSelectorOnMainThread:@selector(setRequests:) withObject:requests waitUntilDone:YES];
+
+  [progressController close];
 }
 
 

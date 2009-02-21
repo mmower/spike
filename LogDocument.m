@@ -29,8 +29,6 @@ static NSMutableDictionary *HTTPMethodColors;
 
 @interface LogDocument (PrivateMethods)
 + (NSColor *)colorForHTTPMethod:(NSString *)method brighten:(BOOL)brighten;
-- (void)parseLogData:(NSData *)data;
-- (NSData *)gunzipedDataFromData:(NSData *)compressedData;
 @end
 
 @implementation LogDocument
@@ -96,7 +94,13 @@ static NSMutableDictionary *HTTPMethodColors;
     [self setCompressedLog:NO];
   }
   
-  [NSThread detachNewThreadSelector:@selector(parseLogData:) toTarget:self withObject:data];
+  logParser = [[LogParser alloc] initWithDocument:self];
+  
+  // The parser handles the log data on a background thread. When it is done
+  // it will call back on the main thread to set the requests property.
+  [NSThread detachNewThreadSelector:@selector(parseLogData:)
+                           toTarget:logParser
+                         withObject:data];
   
   // Always return YES. Not quite sure what we should do if there is ever an error
   // in the legitimate load process.
@@ -211,19 +215,6 @@ static NSMutableDictionary *HTTPMethodColors;
     [focusToolbarItem setLabel:@"Focus"];
     [focusMenuItem setState:NSOffState];
   }
-}
-
-
-#pragma mark Implementation
-
-/*
- * Parse the data read from the logfile passing on whether the log data is compressed
- * or not. The resulting array of RailsRequest instances assigned to the 'requests'
- * property back on the main thread.
- */
-- (void)parseLogData:(NSData *)data {
-  LogParser *parser = [[LogParser alloc] initWithDocument:self];
-  [self performSelectorOnMainThread:@selector(setRequests:) withObject:[parser parseLogData:data isCompressed:[self compressedLog]] waitUntilDone:YES];
 }
 
 

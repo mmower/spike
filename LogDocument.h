@@ -9,11 +9,12 @@
 #import <Cocoa/Cocoa.h>
 
 @class AppController;
-// @class RequestDetailsController;
+@class LogParser;
 
 @interface LogDocument : NSDocument {
             BOOL                      compressedLog;
             NSArray                   *requests;
+            LogParser                 *logParser;
             
             NSPredicate               *filterPredicate;
             
