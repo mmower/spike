@@ -40,6 +40,7 @@
 		C9EEFC290F45B59900054345 /* RailsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEFC280F45B59900054345 /* RailsRequest.m */; };
 		C9EEFC2E0F45B5A300054345 /* LogParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEFC2D0F45B5A300054345 /* LogParser.m */; };
 		C9EEFC510F45C82000054345 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EEFC500F45C82000054345 /* AppController.m */; };
+		C9F5FF8A0F51C33400B63A17 /* NSString+SpikeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F5FF890F51C33400B63A17 /* NSString+SpikeAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -108,6 +109,8 @@
 		C9EEFC2D0F45B5A300054345 /* LogParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogParser.m; sourceTree = "<group>"; };
 		C9EEFC4F0F45C82000054345 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		C9EEFC500F45C82000054345 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		C9F5FF880F51C33400B63A17 /* NSString+SpikeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SpikeAdditions.h"; sourceTree = "<group>"; };
+		C9F5FF890F51C33400B63A17 /* NSString+SpikeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SpikeAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,8 @@
 				C92614380F4C32AE00218378 /* ParsingProgressController.m */,
 				C92614BF0F4C591900218378 /* NSScanner+SpikeAdditions.h */,
 				C92614C00F4C591900218378 /* NSScanner+SpikeAdditions.m */,
+				C9F5FF880F51C33400B63A17 /* NSString+SpikeAdditions.h */,
+				C9F5FF890F51C33400B63A17 /* NSString+SpikeAdditions.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -317,6 +322,7 @@
 				C92614390F4C32AE00218378 /* ParsingProgressController.m in Sources */,
 				C92614C10F4C591900218378 /* NSScanner+SpikeAdditions.m in Sources */,
 				C9BEA82E0F4C81A400C4F976 /* NSData+ZlibAdditions.m in Sources */,
+				C9F5FF8A0F51C33400B63A17 /* NSString+SpikeAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,7 @@
 
 #import "NSScanner+SpikeAdditions.h"
 #import "NSData+ZlibAdditions.h"
+#import "NSString+SpikeAdditions.h"
 
 @interface LogParser (PrivateMethods)
 - (RailsRequest *)parseRequest:(NSArray *)lines;
@@ -92,6 +93,7 @@
   NSMutableArray *lineGroup = [[NSMutableArray alloc] init];
   for( NSString *line in lines ) {
     line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    line = [line stringByRemovingANSIEscapeSequences];
     
     if( ![line isEqualToString:@""] ) {
       if( [line hasPrefix:@"Processing"] ) {
@@ -127,7 +129,6 @@
   
   for( NSString *line in lines ) {
     if( [line hasPrefix:@"Processing"] ) {
-      NSLog( @"Scan: %@", line );
       [self scanProcessing:line intoRequest:request];
     } else if( [line hasPrefix:@"Parameters"] ) {
       [self scanParameters:line intoRequest:request];
