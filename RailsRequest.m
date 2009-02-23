@@ -34,6 +34,7 @@
 @synthesize when;
 @synthesize client;
 @synthesize url;
+@synthesize redirect;
 @synthesize controller;
 @synthesize action;
 @synthesize format;

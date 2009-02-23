@@ -32,6 +32,7 @@
 - (void)scanRendering:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanRendered:(NSString *)line intoRequest:(RailsRequest *)request;
 - (void)scanFilter:(NSString *)line intoRequest:(RailsRequest *)request;
+- (void)scanRedirect:(NSString *)line intoRequest:(RailsRequest *)request;
 @end
 
 @implementation LogParser
@@ -142,6 +143,8 @@
       [self scanRendered:line intoRequest:request];
     } else if( [line hasPrefix:@"Filter"] ) {
       [self scanFilter:line intoRequest:request];
+    } else if( [line hasPrefix:@"Redirected to"] ) {
+      [self scanRedirect:line intoRequest:request];
     }
   }
   
@@ -341,8 +344,7 @@
 
 
 - (void)scanRendered:(NSString *)line intoRequest:(RailsRequest *)request {
-  NSString *render = [line substringFromIndex:9];
-  [[request renders] addObject:render];
+  [[request renders] addObject:[line substringFromIndex:9]];
 }
 
 
@@ -355,6 +357,10 @@
   
   [request setHalted:YES];
   [request setFilter:buffer];
+}
+
+- (void)scanRedirect:(NSString *)line intoRequest:(RailsRequest *)request {
+  [request setRedirect:[line substringFromIndex:14]];
 }
 
 @end

@@ -1,3 +1,9 @@
+h1. <span>2009-02-23</span> Release 1.1
+
+Strip ANSI escape sequences from logged info
+Added a 'follow' button for the session details
+Display redirect URL
+
 h1. <span>2009-02-21</span> Release 1.0.9
 
 Reload now shows the new requests since last load

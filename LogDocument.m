@@ -219,6 +219,18 @@ static NSMutableDictionary *HTTPMethodColors;
 
 
 /*
+ * Take the session from the currently selected request and filter on it.
+ */
+- (IBAction)followSession:(id)sender {
+  RailsRequest *request = [[requestsController selectedObjects] objectAtIndex:0];
+  if( request ) {
+    [searchField setStringValue:@""];
+    [requestsController setFilterPredicate:[NSPredicate predicateWithFormat:@"session == %@",[request session]]];
+  }
+}
+
+
+/*
  * Reloads the log data but only reparses what is new since the last parse.
  */
 - (IBAction)reloadChangedLog:(id)sender {

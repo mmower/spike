@@ -14,6 +14,7 @@
   NSDate              *when;
   NSHost              *client;
   NSString            *url;
+  NSString            *redirect;
   NSString            *controller;
   NSString            *action;
   NSString            *format;
@@ -34,6 +35,7 @@
 @property (assign)  NSDate              *when;
 @property (assign)  NSHost              *client;
 @property (assign)  NSString            *url;
+@property (assign)  NSString            *redirect;
 @property (assign)  NSString            *controller;
 @property (assign)  NSString            *action;
 @property (assign)  NSString            *format;

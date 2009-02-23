@@ -31,5 +31,6 @@
 - (IBAction)removeSimilarRequests:(id)sender;
 - (IBAction)focusOnRequest:(id)sender;
 - (IBAction)reloadChangedLog:(id)sender;
+- (IBAction)followSession:(id)sender;
 
 @end
