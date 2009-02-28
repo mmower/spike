@@ -13,14 +13,16 @@
 
 #import "Parameter.h"
 
-@interface ParamParser ()
+@interface ParamParser (PrivateMethods)
+
+- (NSString *)grammarPath;
 
 - (void)workOnStringAssembly:(TDAssembly *)assembly;
 - (void)workOnNullAssembly:(TDAssembly *)assembly;
 - (void)workOnBooleanAssembly:(TDAssembly *)assembly;
 - (void)workOnNumberAssembly:(TDAssembly *)assembly;
 - (void)workOnArrayAssembly:(TDAssembly *)assembly;
-- (void)workOnHashAssembly:(TDAssembly *)assembly;
+- (void)workOnObjectAssembly:(TDAssembly *)assembly;
 - (void)workOnPropertyAssembly:(TDAssembly *)assembly;
 
 @end
@@ -29,48 +31,44 @@
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    tokenizer = [[TDTokenizer alloc] init];
-    [tokenizer.symbolState add:@"=>"];
+    NSString *rubyHashGrammar = [NSString stringWithContentsOfFile:[self grammarPath]
+                                                          encoding:NSUTF8StringEncoding
+                                                             error:nil];
+    parser = [[TDParserFactory factory] parserFromGrammar:rubyHashGrammar
+                                                assembler:self
+                                             getTokenizer:&tokenizer];
+    TDReleaseSubparserTree( parser );
+    NSLog( @"Built parser = %@", parser );
   }
   
   return self;
 }
 
 
+- (BOOL)respondsToSelector:(SEL)selector {
+  BOOL doesRespond = [super respondsToSelector:selector];
+  NSLog( @"respondsToSelector:%@ -> %@", NSStringFromSelector(selector), doesRespond ? @"YES" : @"NO" );
+  return doesRespond;
+}
+
+
+@synthesize parser;
 @synthesize tokenizer;
 
 
-@synthesize brace;
-
-- (TDToken *)brace {
-  if( !brace ) {
-    brace = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
-  }
-  
-  return brace;
+- (NSString *)grammarPath {
+  return [[NSBundle bundleForClass:[self class]] pathForResource:@"rubyhash"
+                                                          ofType:@"grammar"];
 }
 
 
-@synthesize bracket;
-
-- (TDToken *)bracket {
-  if( !bracket ) {
-    bracket = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0];
-  }
+- (NSArray *)parseParams:(NSString *)unparsedParams {
+  [[self tokenizer] setString:unparsedParams];
   
-  return bracket;
-}
-
-
-@synthesize stringParser;
-
-- (TDParser *)stringParser {
-  if( !stringParser ) {
-    stringParser = [TDQuotedString quotedString];
-    [stringParser setAssembler:self selector:@selector(workOnStringAssembly:)];
-  }
+  TDTokenAssembly *assembly = [TDTokenAssembly assemblyWithTokenizer:tokenizer];
+  TDAssembly *result = [[self parser] bestMatchFor:assembly];
   
-  return stringParser;
+  return [result pop];
 }
 
 
@@ -80,33 +78,9 @@
 }
 
 
-@synthesize numberParser;
-
-- (TDParser *)numberParser {
-  if( !numberParser ) {
-    numberParser = [TDNum num];
-    [numberParser setAssembler:self selector:@selector(workOnNumberAssembly:)];
-  }
-  
-  return numberParser;
-}
-
-
 - (void)workOnNumberAssembly:(TDAssembly *)assembly {
   TDToken *tok = [assembly pop];
   [assembly push:[NSNumber numberWithFloat:[tok floatValue]]];
-}
-
-
-@synthesize nullParser;
-
-- (TDParser *)nullParser {
-  if (!nullParser) {
-    nullParser = [[TDLiteral literalWithString:@"null"] discard];
-    [nullParser setAssembler:self selector:@selector(workOnNullAssembly:)];
-  }
-  
-  return nullParser;
 }
 
 
@@ -115,202 +89,69 @@
 }
 
 
-@synthesize booleanParser;
-
-- (TDCollectionParser *)booleanParser {
-  if (!booleanParser) {
-    booleanParser = [TDAlternation alternation];
-    [booleanParser add:[TDLiteral literalWithString:@"true"]];
-    [booleanParser add:[TDLiteral literalWithString:@"false"]];
-    [booleanParser setAssembler:self selector:@selector(workOnBooleanAssembly:)];
-  }
-  
-  return booleanParser;
-}
-
-
 - (void)workOnBooleanAssembly:(TDAssembly *)assembly {
-  TDToken *tok = [assembly pop];
-  [assembly push:[NSNumber numberWithBool:[[tok stringValue] isEqualToString:@"true"] ? YES : NO]];
-}
-
-
-@synthesize commaValueParser;
-
-- (TDCollectionParser *)commaValueParser {
-  if( !commaValueParser ) {
-    commaValueParser = [TDTrack sequence];
-    [commaValueParser add:[[TDSymbol symbolWithString:@","] discard]];
-    [commaValueParser add:[self valueParser]];
-  }
-  
-  return commaValueParser;
-}
-
-
-@synthesize propertyParser;
-
-- (TDCollectionParser *)propertyParser {
-  if( !propertyParser ) {
-    propertyParser = [TDSequence sequence];
-    [propertyParser add:[TDQuotedString quotedString]];
-    [propertyParser add:[[TDSymbol symbolWithString:@"=>"] discard]];
-    [propertyParser add:[self valueParser]];
-    [propertyParser setAssembler:self selector:@selector(workOnPropertyAssembly:)];
-  }
-  
-  return propertyParser;
+  TDToken *token = [assembly pop];
+  [assembly push:[NSNumber numberWithBool:[[token stringValue] isEqualToString:@"true"] ? YES : NO]];
 }
 
 
 - (void)workOnPropertyAssembly:(TDAssembly *)assembly {
-  id value = [assembly pop];
-  TDToken *tok = [assembly pop];
-  NSString *key = [[tok stringValue] stringByTrimmingQuotes];
-  
-  [assembly push:key];
-  [assembly push:value];
+  NSLog( @"workOnPropertyAssembly: %@", assembly );
+  // id value = [assembly pop];
+  // TDToken *tok = [assembly pop];
+  // NSString *key = [[tok stringValue] stringByTrimmingQuotes];
+  // 
+  // [assembly push:key];
+  // [assembly push:value];
 }
 
 
-@synthesize valueParser;
-
-- (TDCollectionParser *)valueParser {
-  if( !valueParser ) {
-    valueParser = [TDAlternation alternation];
-    [valueParser add:[self stringParser]];
-    [valueParser add:[self numberParser]];
-    [valueParser add:[self nullParser]];
-    [valueParser add:[self booleanParser]];
-    [valueParser add:[self arrayParser]];
-    [valueParser add:[self hashParser]];
-  }
-  
-  return valueParser;
-}
-
-
-@synthesize commaPropertyParser;
-
-- (TDCollectionParser *)commaPropertyParser {
-  if( !commaPropertyParser ) {
-    commaPropertyParser = [TDTrack sequence];
-    [commaPropertyParser add:[[TDSymbol symbolWithString:@","] discard]];
-    [commaPropertyParser add:[self propertyParser]];
-  }
-  
-  return commaPropertyParser;
-}
-
-
-@synthesize arrayParser;
-
-- (TDCollectionParser *)arrayParser {
-  if (!arrayParser) {
-    
-    // array = '[' content ']'
-    // content = Empty | actualArray
-    // actualArray = value commaValue*
-    
-    TDTrack *actualArray = [TDTrack sequence];
-    [actualArray add:[self valueParser]];
-    [actualArray add:[TDRepetition repetitionWithSubparser:[self commaValueParser]]];
-    
-    TDAlternation *content = [TDAlternation alternation];
-    [content add:[TDEmpty empty]];
-    [content add:actualArray];
-    
-    arrayParser = [TDSequence sequence];
-    [arrayParser add:[TDSymbol symbolWithString:@"["]]; // serves as fence
-    [arrayParser add:content];
-    [arrayParser add:[[TDSymbol symbolWithString:@"]"] discard]];
-    
-    [arrayParser setAssembler:self selector:@selector(workOnArrayAssembly:)];
-  }
-  
-  return arrayParser;
+- (void)workOnValueAssembly:(TDAssembly *)assembly {
+  NSLog( @"workOnValueAssembly: %@", assembly );
 }
 
 
 - (void)workOnArrayAssembly:(TDAssembly *)assembly {
-  NSArray *elements = [assembly objectsAbove:[self bracket]];
-  NSMutableArray *array = [NSMutableArray arrayWithCapacity:elements.count];
-  
-  for( id element in [elements reverseObjectEnumerator] ) {
-    if( element ) {
-        [array addObject:element];
-    }
-  }
-  [assembly pop]; // pop the [
-  [assembly push:array];
+  NSLog( @"workOnArrayAssembly: %@", assembly );
+  // NSArray *elements = [assembly objectsAbove:[self bracket]];
+  // NSMutableArray *array = [NSMutableArray arrayWithCapacity:elements.count];
+  // 
+  // for( id element in [elements reverseObjectEnumerator] ) {
+  //   if( element ) {
+  //       [array addObject:element];
+  //   }
+  // }
+  // [assembly pop]; // pop the [
+  // [assembly push:array];
 }
 
 
-// object = '{' content '}'
-// content = Empty | actualObject
-// actualObject = property commaProperty*
-// property = QuotedString ':' value
-// commaProperty = ',' property
-@synthesize hashParser;
-
-- (TDCollectionParser *)hashParser {
-  if( !hashParser ) {
-    TDTrack *actualObject = [TDTrack sequence];
-    [actualObject add:[self propertyParser]];
-    [actualObject add:[TDRepetition repetitionWithSubparser:[self commaPropertyParser]]];
-    
-    TDAlternation *content = [TDAlternation alternation];
-    [content add:[TDEmpty empty]];
-    [content add:actualObject];
-    
-    hashParser = [TDSequence sequence];
-    [hashParser add:[TDSymbol symbolWithString:@"{"]]; // serves as fence
-    [hashParser add:content];
-    [hashParser add:[[TDSymbol symbolWithString:@"}"] discard]];
-    
-    [hashParser setAssembler:self selector:@selector(workOnHashAssembly:)];
-  }
-  
-  return hashParser;
-}
-
-
-- (void)workOnHashAssembly:(TDAssembly *)assembly {
-  NSArray *elements = [assembly objectsAbove:[self brace]];
-  
-  NSMutableArray *params = [NSMutableArray arrayWithCapacity:[elements count]/2];
-  
-  int i = 0;
-  while( i < [elements count] ) {
-    id value = [elements objectAtIndex:i];
-    NSString *name = [elements objectAtIndex:i+1];
-
-    if( name && value ) {
-      Parameter *param = [[Parameter alloc] initWithName:name];
-      if( [value isKindOfClass:[NSArray class]] ) {
-        [param setGroupedParams:value];
-      } else {
-        [param setValue:value];
-      }
-      [params addObject:param];
-    }
-    
-    i += 2;
-  }
-  
-  [assembly pop]; // pop the {
-  [assembly push:params];
-}
-
-
-- (NSArray *)parseParams:(NSString *)unparsedParams {
-  [[self tokenizer] setString:unparsedParams];
-  
-  TDTokenAssembly *assembly = [TDTokenAssembly assemblyWithTokenizer:tokenizer];
-  
-  TDAssembly *result = [[self hashParser] completeMatchFor:assembly];
-  
-  return [result pop];
+- (void)workOnObjectAssembly:(TDAssembly *)assembly {
+  NSLog( @"workOnObjectAssebly: %@", assembly );
+  // NSArray *elements = [assembly objectsAbove:[self brace]];
+  // 
+  // NSMutableArray *params = [NSMutableArray arrayWithCapacity:[elements count]/2];
+  // 
+  // int i = 0;
+  // while( i < [elements count] ) {
+  //   id value = [elements objectAtIndex:i];
+  //   NSString *name = [elements objectAtIndex:i+1];
+  // 
+  //   if( name && value ) {
+  //     Parameter *param = [[Parameter alloc] initWithName:name];
+  //     if( [value isKindOfClass:[NSArray class]] ) {
+  //       [param setGroupedParams:value];
+  //     } else {
+  //       [param setValue:value];
+  //     }
+  //     [params addObject:param];
+  //   }
+  //   
+  //   i += 2;
+  // }
+  // 
+  // [assembly pop]; // pop the {
+  // [assembly push:params];
 }
 
 

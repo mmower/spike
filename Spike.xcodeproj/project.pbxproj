@@ -32,7 +32,7 @@
 		C95930A70F48AE54004A49FA /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95930A60F48AE54004A49FA /* Sparkle.framework */; };
 		C95930AD0F48AEE3004A49FA /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C95930A60F48AE54004A49FA /* Sparkle.framework */; };
 		C95930BB0F48B4AF004A49FA /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = C95930BA0F48B4AF004A49FA /* dsa_pub.pem */; };
-		C9AAECF60F46D05D00D6C171 /* HashParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAECF50F46D05D00D6C171 /* HashParser.m */; };
+		C99F74340F59458400EBB1AB /* rubyhash.grammar in Resources */ = {isa = PBXBuildFile; fileRef = C99F74330F59458400EBB1AB /* rubyhash.grammar */; };
 		C9AAED650F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED620F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m */; };
 		C9AAED660F46EF0900D6C171 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED640F46EF0900D6C171 /* NSString+TDParseKitAdditions.m */; };
 		C9AAEDD70F4781C500D6C171 /* Parameter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAEDD60F4781C500D6C171 /* Parameter.m */; };
@@ -93,8 +93,7 @@
 		C95930690F4871B0004A49FA /* HaltedColumnTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaltedColumnTransformer.m; sourceTree = "<group>"; };
 		C95930A60F48AE54004A49FA /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		C95930BA0F48B4AF004A49FA /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
-		C9AAECF40F46D05D00D6C171 /* HashParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashParser.h; sourceTree = "<group>"; };
-		C9AAECF50F46D05D00D6C171 /* HashParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HashParser.m; sourceTree = "<group>"; };
+		C99F74330F59458400EBB1AB /* rubyhash.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rubyhash.grammar; sourceTree = "<group>"; };
 		C9AAED610F46EF0900D6C171 /* NSArray+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		C9AAED620F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TDParseKitAdditions.m"; sourceTree = "<group>"; };
 		C9AAED630F46EF0900D6C171 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
@@ -137,8 +136,6 @@
 				C9AAED620F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m */,
 				C9AAED630F46EF0900D6C171 /* NSString+TDParseKitAdditions.h */,
 				C9AAED640F46EF0900D6C171 /* NSString+TDParseKitAdditions.m */,
-				C9AAECF40F46D05D00D6C171 /* HashParser.h */,
-				C9AAECF50F46D05D00D6C171 /* HashParser.m */,
 				C9EEFC270F45B59900054345 /* RailsRequest.h */,
 				C9EEFC280F45B59900054345 /* RailsRequest.m */,
 				C9EEFC2C0F45B5A300054345 /* LogParser.h */,
@@ -216,6 +213,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C99F74330F59458400EBB1AB /* rubyhash.grammar */,
 				C9522C0F0F4F738E00CE32AA /* ticked_checkbox.png */,
 				C905F48A0F4D8164008C9DEC /* close_32.gif */,
 				C905F48B0F4D8164008C9DEC /* refresh_32.gif */,
@@ -298,6 +296,7 @@
 				C905F48F0F4D8164008C9DEC /* search_32.gif in Resources */,
 				C905F56A0F4E20F3008C9DEC /* Credits.rtf in Resources */,
 				C9522C100F4F738E00CE32AA /* ticked_checkbox.png in Resources */,
+				C99F74340F59458400EBB1AB /* rubyhash.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +311,6 @@
 				C9EEFC290F45B59900054345 /* RailsRequest.m in Sources */,
 				C9EEFC2E0F45B5A300054345 /* LogParser.m in Sources */,
 				C9EEFC510F45C82000054345 /* AppController.m in Sources */,
-				C9AAECF60F46D05D00D6C171 /* HashParser.m in Sources */,
 				C9AAED650F46EF0900D6C171 /* NSArray+TDParseKitAdditions.m in Sources */,
 				C9AAED660F46EF0900D6C171 /* NSString+TDParseKitAdditions.m in Sources */,
 				C9AAEDD70F4781C500D6C171 /* Parameter.m in Sources */,
@@ -389,6 +387,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Spike_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "-lz";
@@ -411,6 +410,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Spike_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "-lz";

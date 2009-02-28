@@ -16,11 +16,15 @@
 object        = openCurly objectContent closeCurly;
 objectContent = Empty | actualObject;
 actualObject  = property commaProperty*;
+array         = openSquare arrayContent closeSquare;
+arrayContent  = Empty | actualArray;
+actualArray   = value commaValue*;
 property      = propertyName arrow value;
 commaProperty = comma property;
+commaValue    = comma value;
 propertyName  = QuotedString;         // NOTE: property names are quoted
 
-value         = null | true | false | object | number | string | fileRef;
+value         = null | true | false | object | array | number | string | fileRef;
 
 string        = QuotedString;
 number        = Num;
@@ -31,5 +35,7 @@ false         = 'false';
 
 openCurly     = '{';
 closeCurly    = '}';
+openSquare    = '[';
+closeSquare   = ']';
 comma         = ',';
 arrow         = '=>';
