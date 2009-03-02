@@ -76,6 +76,8 @@
 */
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 
+- (TDParser *)parserNamed:(NSString *)name;
+
 /*!
     @property   assembler
     @brief      The assembler this parser will use to work on a matched assembly.
