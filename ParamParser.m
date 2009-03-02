@@ -27,7 +27,19 @@
 
 @end
 
+static TDToken *arrayStartToken;
+static TDToken *objectStartToken;
+
 @implementation ParamParser
+
++ (void)initialize {
+  if( objectStartToken == nil ) {
+    objectStartToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+  }
+  if( arrayStartToken == nil ) {
+    arrayStartToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0];
+  }
+}
 
 - (id)init {
   if( ( self = [super init] ) ) {
@@ -37,18 +49,10 @@
     parser = [[TDParserFactory factory] parserFromGrammar:rubyHashGrammar
                                                 assembler:self
                                              getTokenizer:&tokenizer];
-    TDReleaseSubparserTree( parser );
-    NSLog( @"Built parser = %@", parser );
+                                             
   }
   
   return self;
-}
-
-
-- (BOOL)respondsToSelector:(SEL)selector {
-  BOOL doesRespond = [super respondsToSelector:selector];
-  NSLog( @"respondsToSelector:%@ -> %@", NSStringFromSelector(selector), doesRespond ? @"YES" : @"NO" );
-  return doesRespond;
 }
 
 
@@ -96,62 +100,51 @@
 
 
 - (void)workOnPropertyAssembly:(TDAssembly *)assembly {
-  NSLog( @"workOnPropertyAssembly: %@", assembly );
-  // id value = [assembly pop];
-  // TDToken *tok = [assembly pop];
-  // NSString *key = [[tok stringValue] stringByTrimmingQuotes];
-  // 
-  // [assembly push:key];
-  // [assembly push:value];
-}
-
-
-- (void)workOnValueAssembly:(TDAssembly *)assembly {
-  NSLog( @"workOnValueAssembly: %@", assembly );
+  id value = [assembly pop];
+  [assembly pop]; // discard =>
+  TDToken *tok = [assembly pop];
+  NSString *key = [[tok stringValue] stringByTrimmingQuotes];
+  
+  Parameter *param = [[Parameter alloc] initWithName:key];
+  if( [value isKindOfClass:[NSArray class]] ) {
+    [param setGroupedParams:value];
+  } else {
+    [param setValue:value];
+  }
+  
+  [assembly push:param];
 }
 
 
 - (void)workOnArrayAssembly:(TDAssembly *)assembly {
-  NSLog( @"workOnArrayAssembly: %@", assembly );
-  // NSArray *elements = [assembly objectsAbove:[self bracket]];
-  // NSMutableArray *array = [NSMutableArray arrayWithCapacity:elements.count];
-  // 
-  // for( id element in [elements reverseObjectEnumerator] ) {
-  //   if( element ) {
-  //       [array addObject:element];
-  //   }
-  // }
-  // [assembly pop]; // pop the [
-  // [assembly push:array];
+  NSArray *elements = [assembly objectsAbove:arrayStartToken];
+  
+  NSMutableString *product = [[NSMutableString alloc] init];
+  for( id element in [elements reverseObjectEnumerator] ) {
+    if( [element isKindOfClass:[TDToken class]] ) {
+      continue;
+    }
+    [product appendFormat:@"%@%@", [product length] > 0 ? @"," : @"", element];
+  }
+  
+  [assembly pop]; // pop the [
+  [assembly push:product];
 }
 
 
 - (void)workOnObjectAssembly:(TDAssembly *)assembly {
-  NSLog( @"workOnObjectAssebly: %@", assembly );
-  // NSArray *elements = [assembly objectsAbove:[self brace]];
-  // 
-  // NSMutableArray *params = [NSMutableArray arrayWithCapacity:[elements count]/2];
-  // 
-  // int i = 0;
-  // while( i < [elements count] ) {
-  //   id value = [elements objectAtIndex:i];
-  //   NSString *name = [elements objectAtIndex:i+1];
-  // 
-  //   if( name && value ) {
-  //     Parameter *param = [[Parameter alloc] initWithName:name];
-  //     if( [value isKindOfClass:[NSArray class]] ) {
-  //       [param setGroupedParams:value];
-  //     } else {
-  //       [param setValue:value];
-  //     }
-  //     [params addObject:param];
-  //   }
-  //   
-  //   i += 2;
-  // }
-  // 
-  // [assembly pop]; // pop the {
-  // [assembly push:params];
+  NSArray *elements = [assembly objectsAbove:objectStartToken];
+  
+  NSMutableArray *params = [NSMutableArray arrayWithCapacity:[elements count]];
+  
+  for( id element in elements ) {
+    if( [element isKindOfClass:[Parameter class]] ) {
+      [params addObject:element];
+    }
+  }
+  
+  [assembly pop]; // pop the {
+  [assembly push:params];
 }
 
 
