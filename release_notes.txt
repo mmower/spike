@@ -1,8 +1,10 @@
-h1. <span>2009-02-23</span> Release 1.1
+h1. <span>2009-03-03</span> Release 1.1
 
+Revamped parser handles array parameters
 Strip ANSI escape sequences from logged info
 Added a 'follow' button for the session details
 Display redirect URL
+Option to reshow details window
 
 h1. <span>2009-02-21</span> Release 1.0.9
 
