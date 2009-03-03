@@ -71,7 +71,9 @@ static NSMutableDictionary *HTTPMethodColors;
 
 - (void)makeWindowControllers {
   [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"LogDocument" owner:self]];
-  [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"RequestDetails" owner:self]];
+  
+  detailsController = [[NSWindowController alloc] initWithWindowNibName:@"RequestDetails" owner:self];
+  [self addWindowController:detailsController];
 }
 
 
@@ -240,6 +242,15 @@ static NSMutableDictionary *HTTPMethodColors;
   [NSThread detachNewThreadSelector:@selector(parseLogData:)
                            toTarget:logParser
                          withObject:[NSData dataWithContentsOfURL:[self fileURL]]];
+}
+
+
+/*
+ * Reshow detail window if it got closed
+ */
+- (IBAction)showDetails:(id)sender {
+  NSLog( @"Show details");
+  [detailsController showWindow:sender];
 }
 
 

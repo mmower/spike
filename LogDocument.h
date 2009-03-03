@@ -22,6 +22,7 @@
   IBOutlet  NSToolbar                 *toolbar;
   IBOutlet  NSSearchField             *searchField;
             NSToolbarItem             *focusToolbarItem;
+            NSWindowController        *detailsController;
 }
 
 @property             BOOL                compressedLog;
@@ -32,5 +33,6 @@
 - (IBAction)focusOnRequest:(id)sender;
 - (IBAction)reloadChangedLog:(id)sender;
 - (IBAction)followSession:(id)sender;
+- (IBAction)showDetails:(id)sender;
 
 @end
