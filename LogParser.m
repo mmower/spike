@@ -66,7 +66,8 @@
   data = [data subdataWithRange:NSMakeRange( highWaterMark, [data length] - highWaterMark )];
   
   [progressController setStatus:@"Scanning log data"];
-  NSString *content = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+  //NSString *content = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+  NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
   NSArray *lines = [content componentsSeparatedByString:@"\n"];
   
   [progressController setStatus:@"Parsing log data"];
@@ -92,6 +93,7 @@
   
   
   NSMutableArray *lineGroup = [[NSMutableArray alloc] init];
+  NSDate *start = [NSDate date];
   for( NSString *line in lines ) {
     line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     line = [line stringByRemovingANSIEscapeSequences];
@@ -113,6 +115,10 @@
     }
     
     linesProcessed += 1;
+	if ((int)linesProcessed % 10000 == 0){ 
+		NSLog(@"%f processed in %f seconds", linesProcessed, [start timeIntervalSinceNow]);
+		
+	}
     [progressController update:linesProcessed];
   }
   

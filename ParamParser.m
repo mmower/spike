@@ -43,10 +43,13 @@ static TDToken *objectStartToken;
 
 - (id)init {
   if( ( self = [super init] ) ) {
-    NSString *rubyHashGrammar = [NSString stringWithContentsOfFile:[self grammarPath]
-                                                          encoding:NSUTF8StringEncoding
-                                                             error:nil];
-    parser = [[TDParserFactory factory] parserFromGrammar:rubyHashGrammar
+	  NSString *rubyHashGrammar = [NSString stringWithContentsOfFile:[self grammarPath]
+															encoding:NSUTF8StringEncoding
+															   error:nil];
+//	  NSString *rubyHashGrammar = [NSString stringWithContentsOfFile:[self grammarPath]
+//															encoding:NSUnicodeStringEncoding
+//															   error:nil];
+	  parser = [[TDParserFactory factory] parserFromGrammar:rubyHashGrammar
                                                 assembler:self
                                              getTokenizer:&tokenizer];
                                              
