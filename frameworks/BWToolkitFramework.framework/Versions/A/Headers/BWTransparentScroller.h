@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWTransparentScroller : NSScroller 
+@interface BWTransparentScroller : NSScroller
 {
 	BOOL isVertical;
 }

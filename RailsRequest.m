@@ -16,7 +16,7 @@
   if( ( self = [super init] ) ) {
     renders = [[NSMutableArray alloc] init];
   }
-  
+
   return self;
 }
 

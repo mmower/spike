@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWToolbarShowFontsItem :  NSToolbarItem 
+@interface BWToolbarShowFontsItem :  NSToolbarItem
 {
 
 }

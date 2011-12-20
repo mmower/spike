@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWToolbarItem : NSToolbarItem 
+@interface BWToolbarItem : NSToolbarItem
 {
 	NSString *identifierString;
 }

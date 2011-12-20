@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWAnchoredPopUpButtonCell : NSPopUpButtonCell 
+@interface BWAnchoredPopUpButtonCell : NSPopUpButtonCell
 {
 
 }

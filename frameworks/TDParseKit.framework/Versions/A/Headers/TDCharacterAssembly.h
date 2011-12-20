@@ -9,7 +9,7 @@
 #import <TDParseKit/TDAssembly.h>
 
 /*!
-    @class      TDCharacterAssembly 
+    @class      TDCharacterAssembly
     @brief      A <tt>TDCharacterAssembly</tt> is a <tt>TDAssembly</tt> whose elements are characters.
 */
 @interface TDCharacterAssembly : TDAssembly {

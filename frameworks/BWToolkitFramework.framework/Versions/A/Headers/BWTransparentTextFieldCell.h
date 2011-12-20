@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWTransparentTextFieldCell : NSTextFieldCell 
+@interface BWTransparentTextFieldCell : NSTextFieldCell
 {
 
 }

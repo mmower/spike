@@ -15,18 +15,18 @@
     @class      TDTokenArraySource
     @brief      A <tt>TokenArraySource</tt> is a handy utility that enumerates over a specified reader, returning <tt>NSArray</tt>s of <tt>TDToken</tt>s delimited by a specified delimiter.
     @details    For example,
- 
+
 @code
     NSString *s = @"I came; I saw; I left in peace;";
 
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     TDTokenArraySource *src = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"] autorelease];
- 
+
     while ([src hasMore]) {
         NSLog(@"%@", [src nextTokenArray]);
     }
 @endcode
- 
+
  prints out:
 
 @code

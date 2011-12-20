@@ -17,9 +17,9 @@
   LogDocument                 *document;
   NSDateFormatter             *dateParser;
   ParamParser                 *paramParser;
-  
+
   NSUInteger                  highWaterMark;
-  
+
   ParsingProgressController   *progressController;
 }
 

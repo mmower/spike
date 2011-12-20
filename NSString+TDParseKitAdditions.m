@@ -12,13 +12,13 @@
 
 - (NSString *)stringByTrimmingQuotes {
     NSUInteger len = self.length;
-    
+
     if (len < 2) {
         return self;
     }
-    
+
     NSRange r = NSMakeRange(0, len);
-    
+
     unichar c = [self characterAtIndex:0];
     if (!isalnum(c)) {
         unichar quoteChar = c;

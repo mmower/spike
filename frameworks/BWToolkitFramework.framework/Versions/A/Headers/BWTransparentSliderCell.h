@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWTransparentSliderCell : NSSliderCell 
+@interface BWTransparentSliderCell : NSSliderCell
 {
 	BOOL isPressed;
 }

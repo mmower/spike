@@ -44,9 +44,9 @@
 @interface TDTokenizer : NSObject {
     NSString *string;
     TDReader *reader;
-    
+
     NSMutableArray *tokenizerStates;
-    
+
     TDNumberState *numberState;
     TDQuoteState *quoteState;
     TDCommentState *commentState;

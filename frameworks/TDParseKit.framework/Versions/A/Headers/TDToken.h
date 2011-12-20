@@ -36,14 +36,14 @@ typedef enum {
     CGFloat floatValue;
     NSString *stringValue;
     TDTokenType tokenType;
-    
+
     BOOL number;
     BOOL quotedString;
     BOOL symbol;
     BOOL word;
     BOOL whitespace;
     BOOL comment;
-    
+
     id value;
 }
 

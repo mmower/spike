@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWAnchoredButtonCell : NSButtonCell 
+@interface BWAnchoredButtonCell : NSButtonCell
 {
-	
+
 }
 
 @end

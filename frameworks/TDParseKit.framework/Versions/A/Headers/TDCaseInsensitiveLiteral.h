@@ -10,7 +10,7 @@
 #import <TDParseKit/TDLiteral.h>
 
 /*!
-    @class      TDCaseInsensitiveLiteral 
+    @class      TDCaseInsensitiveLiteral
     @brief      A <tt>TDCaselessLiteral</tt> matches a specified <tt>NSString</tt> from an assembly, disregarding case.
 */
 @interface TDCaseInsensitiveLiteral : TDLiteral {

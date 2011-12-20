@@ -10,7 +10,7 @@
 #import <TDParseKit/TDTokenizerState.h>
 
 /*!
-    @class      TDWordState 
+    @class      TDWordState
     @brief      A word state returns a word from a reader.
     @details    <p>Like other states, a tokenizer transfers the job of reading to this state, depending on an initial character. Thus, the tokenizer decides which characters may begin a word, and this state determines which characters may appear as a second or later character in a word. These are typically different sets of characters; in particular, it is typical for digits to appear as parts of a word, but not as the initial character of a word.</p>
                 <p>By default, the following characters may appear in a word. The method setWordChars() allows customizing this.</p>

@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWTransparentSlider : NSSlider 
+@interface BWTransparentSlider : NSSlider
 {
 
 }

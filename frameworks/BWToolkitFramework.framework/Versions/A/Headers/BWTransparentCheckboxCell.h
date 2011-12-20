@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "BWTransparentCheckbox.h"
 
-@interface BWTransparentCheckboxCell : NSButtonCell 
+@interface BWTransparentCheckboxCell : NSButtonCell
 {
 
 }

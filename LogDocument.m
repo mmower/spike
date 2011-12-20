@@ -53,7 +53,7 @@ static NSMutableDictionary *HTTPMethodColors;
 + (void)initialize {
   if( !HTTPMethodColors ) {
     HTTPMethodColors = [NSMutableDictionary dictionaryWithCapacity:4];
-    
+
     [HTTPMethodColors setObject:[NSColor colorWithDeviceRed:(20.0/255) green:(128.0/255) blue:(65.0/255) alpha:1.0] forKey:@"GET"];
     [HTTPMethodColors setObject:[NSColor blueColor] forKey:@"PUT"];
     [HTTPMethodColors setObject:[NSColor blueColor] forKey:@"POST"];
@@ -71,7 +71,7 @@ static NSMutableDictionary *HTTPMethodColors;
 
 - (void)makeWindowControllers {
   [self addWindowController:[[NSWindowController alloc] initWithWindowNibName:@"LogDocument" owner:self]];
-  
+
   detailsController = [[NSWindowController alloc] initWithWindowNibName:@"RequestDetails" owner:self];
   [self addWindowController:detailsController];
 }
@@ -95,15 +95,15 @@ static NSMutableDictionary *HTTPMethodColors;
   } else {
     [self setCompressedLog:NO];
   }
-  
+
   logParser = [[LogParser alloc] initWithDocument:self];
-  
+
   // The parser handles the log data on a background thread. When it is done
   // it will call back on the main thread to set the requests property.
   [NSThread detachNewThreadSelector:@selector(parseLogData:)
                            toTarget:logParser
                          withObject:data];
-  
+
   // Always return YES. Not quite sure what we should do if there is ever an error
   // in the legitimate load process.
   return YES;
@@ -132,7 +132,7 @@ static NSMutableDictionary *HTTPMethodColors;
 
 - (NSToolbarItem *)toolbar:(NSToolbar *)aToolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
   NSToolbarItem *toolbarItem = nil;
-  
+
   if( [itemIdentifier isEqualTo:ReloadToolbarItemIdentifier] ) {
     toolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     [toolbarItem setLabel:@"Reload"];
@@ -155,7 +155,7 @@ static NSMutableDictionary *HTTPMethodColors;
     [toolbarItem setMinSize:[searchField frame].size];
     [toolbarItem setMaxSize:[searchField frame].size];
   }
-  
+
   return toolbarItem;
 }
 
@@ -199,21 +199,21 @@ static NSMutableDictionary *HTTPMethodColors;
  * action.
  */
 - (IBAction)focusOnRequest:(id)sender {
-  
+
   NSMenuItem *focusMenuItem = [[NSApp delegate] focusMenuItem];
-  
+
   if( [focusMenuItem state] == NSOffState ) {
     RailsRequest *request = [[requestsController selectedObjects] objectAtIndex:0];
     if( request ) {
       [searchField setStringValue:@""];
       [requestsController setFilterPredicate:[NSPredicate predicateWithFormat:@"controller == %@ AND action == %@",[request controller],[request action]]];
     }
-    
+
     [focusToolbarItem setLabel:@"Unfocus"];
     [focusMenuItem setState:NSOnState];
   } else {
     [requestsController setFilterPredicate:nil];
-    
+
     [focusToolbarItem setLabel:@"Focus"];
     [focusMenuItem setState:NSOffState];
   }

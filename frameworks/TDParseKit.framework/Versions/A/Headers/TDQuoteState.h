@@ -10,7 +10,7 @@
 #import <TDParseKit/TDTokenizerState.h>
 
 /*!
-    @class      TDQuoteState 
+    @class      TDQuoteState
     @brief      A quote state returns a quoted string token from a reader
     @details    This state will collect characters until it sees a match to the character that the tokenizer used to switch to this state. For example, if a tokenizer uses a double- quote character to enter this state, then <tt>-nextToken</tt> will search for another double-quote until it finds one or finds the end of the reader.
 */

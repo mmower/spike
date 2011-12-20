@@ -15,7 +15,7 @@
     [self setName:aName];
     [self setLeaf:YES];
   }
-  
+
   return self;
 }
 

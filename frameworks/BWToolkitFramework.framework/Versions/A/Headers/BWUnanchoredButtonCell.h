@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "BWAnchoredButtonCell.h"
 
-@interface BWUnanchoredButtonCell : BWAnchoredButtonCell 
+@interface BWUnanchoredButtonCell : BWAnchoredButtonCell
 {
 
 }
