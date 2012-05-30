@@ -11,7 +11,7 @@
 @interface Parameter : NSObject {
   NSString *name;
   NSString *value;
-  
+
   BOOL    leaf;
   NSArray *groupedParams;
 }

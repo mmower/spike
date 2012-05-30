@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWTokenField : NSTokenField 
+@interface BWTokenField : NSTokenField
 {
 
 }

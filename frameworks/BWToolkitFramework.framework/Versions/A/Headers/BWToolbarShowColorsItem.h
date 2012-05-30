@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWToolbarShowColorsItem : NSToolbarItem 
+@interface BWToolbarShowColorsItem : NSToolbarItem
 {
 
 }

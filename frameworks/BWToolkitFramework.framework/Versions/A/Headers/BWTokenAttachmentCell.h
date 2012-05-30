@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "NSTokenAttachmentCell.h"
 
-@interface BWTokenAttachmentCell : NSTokenAttachmentCell 
+@interface BWTokenAttachmentCell : NSTokenAttachmentCell
 {
 
 }

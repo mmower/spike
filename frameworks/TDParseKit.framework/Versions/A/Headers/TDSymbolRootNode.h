@@ -12,7 +12,7 @@
 @class TDReader;
 
 /*!
-    @class      TDSymbolRootNode 
+    @class      TDSymbolRootNode
     @brief      This class is a special case of a <tt>TDSymbolNode</tt>.
     @details    This class is a special case of a <tt>TDSymbolNode</tt>. A <tt>TDSymbolRootNode</tt> object has no symbol of its own, but has children that represent all possible symbols.
 */

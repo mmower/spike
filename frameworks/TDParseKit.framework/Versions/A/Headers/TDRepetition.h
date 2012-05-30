@@ -10,7 +10,7 @@
 #import <TDParseKit/TDParser.h>
 
 /*!
-    @class      TDRepetition 
+    @class      TDRepetition
     @brief      A <tt>TDRepetition</tt> matches its underlying parser repeatedly against a assembly.
 */
 @interface TDRepetition : TDParser {

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /*!
-    @class      TDReader 
+    @class      TDReader
     @brief      A character-stream reader that allows characters to be pushed back into the stream.
 */
 @interface TDReader : NSObject {

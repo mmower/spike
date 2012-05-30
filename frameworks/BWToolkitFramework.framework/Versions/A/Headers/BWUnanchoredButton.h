@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "BWUnanchoredButtonCell.h"
 
-@interface BWUnanchoredButton : NSButton 
+@interface BWUnanchoredButton : NSButton
 {
 	NSPoint topAndLeftInset;
 }

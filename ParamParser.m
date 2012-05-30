@@ -52,9 +52,9 @@ static TDToken *objectStartToken;
 	  parser = [[TDParserFactory factory] parserFromGrammar:rubyHashGrammar
                                                 assembler:self
                                              getTokenizer:&tokenizer];
-                                             
+
   }
-  
+
   return self;
 }
 
@@ -71,10 +71,10 @@ static TDToken *objectStartToken;
 
 - (NSArray *)parseParams:(NSString *)unparsedParams {
   [[self tokenizer] setString:unparsedParams];
-  
+
   TDTokenAssembly *assembly = [TDTokenAssembly assemblyWithTokenizer:tokenizer];
   TDAssembly *result = [[self parser] bestMatchFor:assembly];
-  
+
   return [result pop];
 }
 
@@ -107,21 +107,21 @@ static TDToken *objectStartToken;
   [assembly pop]; // discard =>
   TDToken *tok = [assembly pop];
   NSString *key = [[tok stringValue] stringByTrimmingQuotes];
-  
+
   Parameter *param = [[Parameter alloc] initWithName:key];
   if( [value isKindOfClass:[NSArray class]] ) {
     [param setGroupedParams:value];
   } else {
     [param setValue:value];
   }
-  
+
   [assembly push:param];
 }
 
 
 - (void)workOnArrayAssembly:(TDAssembly *)assembly {
   NSArray *elements = [assembly objectsAbove:arrayStartToken];
-  
+
   NSMutableString *product = [[NSMutableString alloc] init];
   for( id element in [elements reverseObjectEnumerator] ) {
     if( [element isKindOfClass:[TDToken class]] ) {
@@ -129,7 +129,7 @@ static TDToken *objectStartToken;
     }
     [product appendFormat:@"%@%@", [product length] > 0 ? @"," : @"", element];
   }
-  
+
   [assembly pop]; // pop the [
   [assembly push:product];
 }
@@ -137,15 +137,15 @@ static TDToken *objectStartToken;
 
 - (void)workOnObjectAssembly:(TDAssembly *)assembly {
   NSArray *elements = [assembly objectsAbove:objectStartToken];
-  
+
   NSMutableArray *params = [NSMutableArray arrayWithCapacity:[elements count]];
-  
+
   for( id element in elements ) {
     if( [element isKindOfClass:[Parameter class]] ) {
       [params addObject:element];
     }
   }
-  
+
   [assembly pop]; // pop the {
   [assembly push:params];
 }

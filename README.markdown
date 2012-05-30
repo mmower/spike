@@ -42,4 +42,4 @@ View a short [demo movie](http://www.screencast.com/users/sandbags/folders/Jing/
 
 ## About the author
 
-[I](http://mattmower.com/) write Rails applications [for a living](http://reeplay.it/) and Cocoa applications as a hobby under the name [LucidMac Software](http://lucidmac.com/) 
+[I](http://mattmower.com/) write Rails applications [for a living](http://reeplay.it/) and Cocoa applications as a hobby under the name [LucidMac Software](http://lucidmac.com/)

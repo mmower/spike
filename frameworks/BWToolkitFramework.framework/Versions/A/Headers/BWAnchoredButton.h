@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "BWAnchoredButtonCell.h"
 
-@interface BWAnchoredButton : NSButton 
+@interface BWAnchoredButton : NSButton
 {
 	BOOL isAtLeftEdgeOfBar;
 	BOOL isAtRightEdgeOfBar;

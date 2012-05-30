@@ -10,7 +10,7 @@
 #import <TDParseKit/TDTerminal.h>
 
 /*!
-    @class      TDQuotedString 
+    @class      TDQuotedString
     @brief      A <tt>TDQuotedString</tt> matches a quoted string, like "this one" from a token assembly.
 */
 @interface TDQuotedString : TDTerminal {

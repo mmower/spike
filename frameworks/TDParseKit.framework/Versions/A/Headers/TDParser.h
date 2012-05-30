@@ -11,7 +11,7 @@
 @class TDAssembly;
 
 /*!
-    @class      TDParser 
+    @class      TDParser
     @brief      An Abstract class. A <tt>TDParser</tt> is an object that recognizes the elements of a language.
     @details    <p>Each <tt>TDParser</tt> object is either a <tt>TDTerminal</tt> or a composition of other parsers. The <tt>TDTerminal</tt> class is a subclass of Parser, and is itself a hierarchy of parsers that recognize specific patterns of text. For example, a <tt>TDWord</tt> recognizes any word, and a <tt>TDLiteral</tt> matches a specific string.</p>
                 <p>In addition to <tt>TDTerminal</tt>, other subclasses of <tt>TDParser</tt> provide composite parsers, describing sequences, alternations, and repetitions of other parsers. For example, the following <tt>TDParser</tt> objects culminate in a good parser that recognizes a description of good coffee.</p>

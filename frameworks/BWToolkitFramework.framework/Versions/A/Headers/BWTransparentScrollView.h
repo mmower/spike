@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWTransparentScrollView : NSScrollView 
+@interface BWTransparentScrollView : NSScrollView
 {
 
 }

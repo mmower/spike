@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWTexturedSliderCell : NSSliderCell 
+@interface BWTexturedSliderCell : NSSliderCell
 {
 	BOOL isPressed;
 	int trackHeight;

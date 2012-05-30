@@ -6,7 +6,7 @@
 //  All code is provided under the New BSD license.
 //
 
-//  This is a convenience header for importing the BWToolkit framework into your classes. 
+//  This is a convenience header for importing the BWToolkit framework into your classes.
 
 #import "BWAnchoredButton.h"
 #import "BWAnchoredButtonBar.h"

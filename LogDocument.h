@@ -15,9 +15,9 @@
             BOOL                      compressedLog;
             NSArray                   *requests;
             LogParser                 *logParser;
-            
+
             NSPredicate               *filterPredicate;
-            
+
   IBOutlet  NSArrayController         *requestsController;
   IBOutlet  NSToolbar                 *toolbar;
   IBOutlet  NSSearchField             *searchField;

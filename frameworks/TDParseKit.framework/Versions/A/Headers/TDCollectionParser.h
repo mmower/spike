@@ -10,7 +10,7 @@
 #import <TDParseKit/TDParser.h>
 
 /*!
-    @class      TDCollectionParser 
+    @class      TDCollectionParser
     @brief      An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
 */
 @interface TDCollectionParser : TDParser {

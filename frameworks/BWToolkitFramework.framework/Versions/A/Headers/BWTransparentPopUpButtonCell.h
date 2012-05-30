@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWTransparentPopUpButtonCell : NSPopUpButtonCell 
+@interface BWTransparentPopUpButtonCell : NSPopUpButtonCell
 {
 	NSColor *interiorColor;
 }

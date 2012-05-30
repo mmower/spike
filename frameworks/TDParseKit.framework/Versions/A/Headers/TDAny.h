@@ -10,7 +10,7 @@
 #import <TDParseKit/TDTerminal.h>
 
 /*!
-    @class      TDAny 
+    @class      TDAny
     @brief      A <tt>TDAny</tt> matches any token from a token assembly.
 */
 @interface TDAny : TDTerminal {

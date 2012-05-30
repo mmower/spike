@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BWTransparentTableView : NSTableView 
+@interface BWTransparentTableView : NSTableView
 {
 
 }
